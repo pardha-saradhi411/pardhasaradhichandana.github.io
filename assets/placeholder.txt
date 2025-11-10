@@ -1,0 +1,1 @@
+Add your project and certificate images into assets/projects/ and assets/certifications/
