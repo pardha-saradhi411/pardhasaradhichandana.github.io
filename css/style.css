@@ -428,13 +428,7 @@ h6 {
   width: 100%;
   height: 100vh;
   background: url("../img/hero-resized.svg") no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  background-size: cotain;
 }
 
 #hero:before {
