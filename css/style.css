@@ -427,8 +427,10 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/developer-bg.svg") no-repeat center center;
-  background-size: contain;
+  background: url("../img/hero-bg.jpg") no-repeat center center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
 }
 
 #hero:before {
