@@ -427,8 +427,14 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") no-repeat center center;
+  background: url("../img/hero-resized.jpg") no-repeat center center;
   background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 #hero:before {
