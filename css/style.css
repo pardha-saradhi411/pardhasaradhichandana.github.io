@@ -429,8 +429,6 @@ h6 {
   height: 100vh;
   background: url("../img/hero-bg.jpg") no-repeat center center;
   background-size: cover;
-  background-position: center;
-  background-attachment: scroll;
 }
 
 #hero:before {
