@@ -191,10 +191,15 @@ h6 {
   text-decoration: none;
 }
 
-.sign-name {
+/*.sign-name {
   font-family: 'Agustina', sans-serif;
   font-weight: 600;
+}*/
+.sign-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
 }
+
 
 .card svg {
   height: 25px;
