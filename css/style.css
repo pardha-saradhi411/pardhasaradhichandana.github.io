@@ -195,10 +195,15 @@ h6 {
   font-family: 'Agustina', sans-serif;
   font-weight: 600;
 }*/
-.sign-name {
+/*.sign-name {
   font-family: 'Great Vibes', cursive;
   font-size: 30px;
+}*/
+.sign-name {
+  font-family: 'Lavishly Yours', cursive;
+  font-size: 30px;
 }
+
 
 
 .card svg {
