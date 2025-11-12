@@ -723,11 +723,18 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
-.about-me-title {
+/* .about-me-title {
   font-weight: 700;
   font-size: 26px;
   color: #173b6c;
+}*/
+.about-me-title {
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 24px;
+  color: #173b6c;
 }
+
 
 .about .content ul {
   list-style: none;
