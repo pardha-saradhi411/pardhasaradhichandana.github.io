@@ -198,9 +198,13 @@ h6 {
 /*.sign-name {
   font-family: 'Great Vibes', cursive;
   font-size: 30px;
-}*/
+}
 .sign-name {
   font-family: 'Lavishly Yours', cursive;
+  font-size: 30px;
+}*/
+.sign-name {
+  font-family: 'Annie Use Your Telescope', cursive;
   font-size: 30px;
 }
 
