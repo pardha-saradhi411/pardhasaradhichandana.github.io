@@ -191,10 +191,26 @@ h6 {
   text-decoration: none;
 }
 
-.sign-name {
+/*.sign-name {
   font-family: 'Agustina', sans-serif;
   font-weight: 600;
+}*/
+/*.sign-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
+}*/
+.sign-name {
+  font-family: 'Compressedhand', sans-serif;                                               
+  font-size: 600;
 }
+/*.sign-name {
+  font-family: 'Annie Use Your Telescope' !important;
+  font-size: 30px !important;
+  font-weight: 600 !important;
+}*/
+
+
+
 
 .card svg {
   height: 25px;
@@ -427,7 +443,7 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/developer-bg.svg") no-repeat center center;
+  background: url("../img/hero-bg.jpg") no-repeat center center;
   background-size: contain;
 }
 
@@ -707,11 +723,18 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
-.about-me-title {
+/* .about-me-title {
   font-weight: 700;
   font-size: 26px;
   color: #173b6c;
+}*/
+.about-me-title {
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 24px;
+  color: #173b6c;
 }
+
 
 .about .content ul {
   list-style: none;
@@ -1524,7 +1547,7 @@ button:hover .button-text {
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-#footer {
+/* #footer {
   padding: 15px;
   color: #f4f6fd;
   font-size: 14px;
@@ -1555,4 +1578,4 @@ button:hover .button-text {
     width: auto;
     padding-right: 20px 15px;
   }
-}
+}*/
