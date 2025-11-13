@@ -204,9 +204,9 @@ h6 {
   font-size: 30px;
 }*/
 .sign-name {
-  font-family: 'Annie Use Your Telescope', sans-serif !important;
-  font-size: 28px;
-  font-weight: normal;
+  font-family: 'Annie Use Your Telescope' !important;
+  font-size: 28px !important;
+  font-weight: normal !important;
 }
 
 
