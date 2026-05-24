@@ -947,6 +947,82 @@
   }
   .recog .issuer { color: var(--ink-dim); font-size: 13.5px; }
 
+  /* ───── Flip cards (Recognition) ───── */
+  .flip-card {
+    perspective: 1200px;
+    aspect-ratio: 0.85;
+    cursor: pointer;
+  }
+  .flip-card-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transition: transform .85s cubic-bezier(0.2, 0.8, 0.3, 1);
+    transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+  .flip-card-face {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* Fully opaque background: backdrop-filter breaks backface-visibility */
+    background: #16171b;
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 26px 24px;
+    display: flex; flex-direction: column;
+    transition: border-color .3s var(--ease);
+    transform: rotateY(0deg);
+  }
+  .flip-card:hover .flip-card-face { border-color: var(--hairline-strong); }
+  .flip-card-face .ribbon {
+    width: 38px; height: 38px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .flip-card-face .type {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--ink-faint); letter-spacing: 1.4px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .flip-card-face h4 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: 19px; line-height: 1.25;
+    letter-spacing: -0.01em; margin-bottom: 6px;
+  }
+  .flip-card-face .issuer { color: var(--ink-dim); font-size: 13.5px; }
+  .flip-hint {
+    margin-top: auto;
+    font-family: var(--mono); font-size: 9.5px;
+    color: var(--ink-faint);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    display: flex; align-items: center; gap: 8px;
+    padding-top: 18px;
+  }
+  .flip-hint::before { content: ''; width: 16px; height: 1px; background: var(--accent); }
+  .flip-card-back {
+    transform: rotateY(180deg);
+    /* Opaque amber-tinted bg: keep below 100% transparency means front shows through */
+    background: #1c1812;
+    border-color: rgba(var(--accent-rgb), 0.4);
+  }
+  .flip-card-back .back-type {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--accent); letter-spacing: 1.4px;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .flip-card-back h4 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: 17px; line-height: 1.25;
+    letter-spacing: -0.01em; margin-bottom: 10px;
+  }
+  .flip-card-back p {
+    font-size: 13px; color: var(--ink-dim);
+    line-height: 1.55; flex: 1;
+  }
+
   /* ───── Contact ───── */
   .contact {
     padding: 140px 0 100px;
@@ -1002,1068 +1078,168 @@
   .contact-meta a { color: var(--ink-dim); text-decoration: none; transition: color .25s var(--ease); }
   .contact-meta a:hover { color: var(--accent); }
 
-  /* ───── Footer ───── */
-  footer {
-    border-top: 1px solid var(--hairline);
-    padding: 50px 0 60px;
-    background: rgba(12, 12, 13, 0.6);
+  /* Contact form + profile card layout */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 24px;
+    margin: 60px auto 50px;
+    text-align: left;
+    align-items: stretch;
+    max-width: 1000px;
   }
-  .foot {
-    display: grid; grid-template-columns: 1fr auto 1fr;
-    gap: 30px; align-items: end;
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 18px; margin: 40px auto; }
   }
-  @media (max-width: 768px) { .foot { grid-template-columns: 1fr; text-align: left; } }
-  .foot .logo-big {
-    font-family: var(--serif); font-weight: 400;
-    font-size: clamp(60px, 12vw, 180px);
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    color: var(--ink-faint);
+
+  .contact-form {
+    background: rgba(19, 19, 22, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 30px 30px 28px;
+    display: flex; flex-direction: column;
   }
-  .foot .col h5 {
+  .contact-form h3 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 22px; letter-spacing: -0.01em;
+    margin-bottom: 22px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .contact-form h3::after {
+    content: ''; flex: 1; height: 1px;
+    background: var(--hairline);
+  }
+  .form-field { margin-bottom: 16px; }
+  .form-field:last-of-type { flex: 1; display: flex; flex-direction: column; margin-bottom: 18px; }
+  .form-field label {
+    display: block;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--ink-faint); letter-spacing: 1.3px;
+    text-transform: uppercase; margin-bottom: 7px;
+  }
+  .form-field input, .form-field textarea {
+    width: 100%;
+    background: rgba(12, 12, 13, 0.7);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 11px 13px;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 13.5px;
+    transition: border-color .25s var(--ease), background .25s var(--ease);
+  }
+  .form-field textarea {
+    resize: vertical; min-height: 110px; flex: 1;
+    font-family: var(--sans); line-height: 1.5;
+  }
+  .form-field input:focus, .form-field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(12, 12, 13, 0.95);
+  }
+  .form-submit {
+    background: var(--ink); color: var(--bg);
+    border: none; border-radius: 999px;
+    padding: 13px 22px;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 500;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    transition: background .25s var(--ease), transform .25s var(--ease);
+    width: 100%;
+  }
+  .form-submit:hover { background: var(--accent); }
+  .form-submit .arr { transition: transform .25s var(--ease); }
+  .form-submit:hover .arr { transform: translate(3px, -3px); }
+  .form-status {
     font-family: var(--mono); font-size: 10.5px;
+    color: var(--signal); letter-spacing: 1px;
+    text-transform: uppercase; margin-top: 10px;
+    text-align: center; min-height: 14px;
+    opacity: 0; transition: opacity .3s var(--ease);
+  }
+  .form-status.shown { opacity: 1; }
+
+  /* Profile card */
+  .profile-card {
+    background: rgba(19, 19, 22, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 28px 26px 22px;
+    display: flex; flex-direction: column;
+  }
+  .profile-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1px solid rgba(var(--accent-rgb), 0.4);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    font-family: var(--mono); font-size: 14px;
+    color: var(--accent); font-weight: 500;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .profile-card h3 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 19px; letter-spacing: -0.01em;
+    margin-bottom: 5px; line-height: 1.2;
+  }
+  .profile-card .profile-role {
+    font-size: 12.5px;
+    color: var(--ink-dim);
+    line-height: 1.45;
+    margin-bottom: 16px;
+  }
+  .profile-tags {
+    display: flex; flex-wrap: wrap; gap: 5px;
+    margin-bottom: 20px;
+  }
+  .profile-tags span {
+    font-family: var(--mono); font-size: 10.5px;
+    padding: 3px 9px; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--ink-dim);
+    border: 1px solid var(--hairline);
+  }
+  .profile-tags span.more {
     color: var(--ink-faint);
-    letter-spacing: 1.5px; text-transform: uppercase;
-    margin-bottom: 12px;
+    border-color: transparent;
+    padding-left: 4px;
   }
-  .foot .col a, .foot .col p {
-    display: block; color: var(--ink-dim);
-    font-size: 14px; line-height: 1.7;
+  .profile-resume {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px;
+    padding: 11px 16px;
+    background: rgba(var(--accent-rgb), 0.08);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    color: var(--accent);
     text-decoration: none;
-    transition: color .25s var(--ease);
+    font-size: 13px; font-weight: 500;
+    margin-bottom: 12px;
+    transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
   }
-  .foot .col a:hover { color: var(--accent); }
-  .foot .col.right { text-align: right; }
-  @media (max-width: 768px) { .foot .col.right { text-align: left; } }
-  .colophon {
-    margin-top: 50px; padding-top: 26px;
-    border-top: 1px solid var(--hairline);
-    display: flex; justify-content: space-between;
-    font-family: var(--mono); font-size: 11px;
-    color: var(--ink-faint); letter-spacing: 0.8px;
-    flex-wrap: wrap; gap: 14px;
+  .profile-resume:hover {
+    background: var(--accent); color: var(--bg);
   }
-
-  /* ───── Reveal & split animations ───── */
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal.d-1 { transition-delay: .08s; }
-  .reveal.d-2 { transition-delay: .16s; }
-  .reveal.d-3 { transition-delay: .24s; }
-
-  .split { display: inline-block; }
-  .split .ch {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(80%);
-    transition: opacity .8s var(--ease), transform .8s var(--ease);
+  .profile-resume .dl-icon {
+    width: 18px; height: 18px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    transition: transform .3s var(--ease);
   }
-  .split.in .ch { opacity: 1; transform: translateY(0); }
-  .split.in .ch:nth-child(1)  { transition-delay: 0.05s; }
-  .split.in .ch:nth-child(2)  { transition-delay: 0.10s; }
-  .split.in .ch:nth-child(3)  { transition-delay: 0.15s; }
-  .split.in .ch:nth-child(4)  { transition-delay: 0.20s; }
-  .split.in .ch:nth-child(5)  { transition-delay: 0.25s; }
-  .split.in .ch:nth-child(6)  { transition-delay: 0.30s; }
-  .split.in .ch:nth-child(7)  { transition-delay: 0.35s; }
-  .split.in .ch:nth-child(8)  { transition-delay: 0.40s; }
-  .split.in .ch:nth-child(9)  { transition-delay: 0.45s; }
-  .split.in .ch:nth-child(10) { transition-delay: 0.50s; }
-  .split.in .ch:nth-child(11) { transition-delay: 0.55s; }
-  .split.in .ch:nth-child(12) { transition-delay: 0.60s; }
-  .split.in .ch:nth-child(13) { transition-delay: 0.65s; }
-  .split.in .ch:nth-child(14) { transition-delay: 0.70s; }
-  .split.in .ch:nth-child(15) { transition-delay: 0.75s; }
-  .split.in .ch:nth-child(16) { transition-delay: 0.80s; }
-
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .reveal { opacity: 1; transform: none; }
-    .split .ch { opacity: 1; transform: none; }
-    .radar-svg .sweep, .radar-svg .blip, .radar-svg .pulse,
-    .marquee-track, .telemetry-led, .hero .available .dot { animation: none !important; }
+  .profile-resume:hover .dl-icon { transform: translateY(2px); }
+  .profile-socials {
+    display: flex; gap: 8px;
+    margin-bottom: 18px;
   }
-</style>
-</head>
-<body>
-
-<!-- Background canvas mesh -->
-<canvas id="meshCanvas" aria-hidden="true"></canvas>
-
-<!-- Custom cursor -->
-<div class="cursor-outer" id="cursorOuter" aria-hidden="true"></div>
-<div class="cursor-inner" id="cursorInner" aria-hidden="true"></div>
-
-<!-- Top nav -->
-<nav class="top" id="nav">
-  <div class="row">
-    <a href="#top" class="brand" data-cursor="link">
-      <span class="mark">PSC</span>
-      <span>Pardha&nbsp;Saradhi</span>
-    </a>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu" data-cursor="hover">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6">
-        <line x1="0" y1="4" x2="14" y2="4"/><line x1="0" y1="10" x2="14" y2="10"/>
-      </svg>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#focus">Focus</a>
-      <a href="#recognition">Recognition</a>
-      <a href="#contact" class="cta">Get in touch <span class="arr">↗</span></a>
-    </div>
-  </div>
-</nav>
-
-<!-- Side progress -->
-<aside class="side-nav" id="sideNav" aria-label="Page sections">
-  <a href="#top"          data-target="top"          data-cursor="hover"><span class="ln"></span><span class="lbl">Index</span></a>
-  <a href="#about"        data-target="about"        data-cursor="hover"><span class="ln"></span><span class="lbl">About</span></a>
-  <a href="#work"         data-target="work"         data-cursor="hover"><span class="ln"></span><span class="lbl">Work</span></a>
-  <a href="#capabilities" data-target="capabilities" data-cursor="hover"><span class="ln"></span><span class="lbl">Capabilities</span></a>
-  <a href="#focus"        data-target="focus"        data-cursor="hover"><span class="ln"></span><span class="lbl">Focus</span></a>
-  <a href="#recognition"  data-target="recognition"  data-cursor="hover"><span class="ln"></span><span class="lbl">Recognition</span></a>
-  <a href="#contact"      data-target="contact"      data-cursor="hover"><span class="ln"></span><span class="lbl">Contact</span></a>
-</aside>
-
-<main id="top">
-
-  <!-- Hero -->
-  <header class="hero wrap">
-    <div class="available reveal">
-      <span class="dot"></span>
-      <span>AVAILABLE FOR RAN / 5G ROLES · BANGALORE / REMOTE</span>
-    </div>
-
-    <h1>
-      <span class="split" id="splitName">
-        <span class="ch">P</span><span class="ch">a</span><span class="ch">r</span><span class="ch">d</span><span class="ch">h</span><span class="ch">a</span><span class="ch">&nbsp;</span><span class="ch">S</span><span class="ch">a</span><span class="ch">r</span><span class="ch">a</span><span class="ch">d</span><span class="ch">h</span><span class="ch">i</span>
-      </span>
-      <br/>
-      <span class="sub-mark"></span><span class="it">Chandana.</span>
-    </h1>
-
-    <div class="hero-grid">
-      <div class="hero-left">
-        <p class="lede reveal d-1">
-          <strong>RAN / Radio System &amp; Automation Test Engineer</strong> validating LTE and 5G&nbsp;NR networks across feature, performance, and stability — currently at <strong>Parallel Wireless</strong>, formerly across Mavenir engagements for <strong>DTAG</strong>, <strong>VMO2</strong>, and <strong>NEC</strong>.
-        </p>
-        <div class="meta reveal d-2">
-          <span><span class="k">01 ·</span> Bangalore, IN</span>
-          <span><span class="k">02 ·</span> Est. 2022</span>
-          <span><span class="k">03 ·</span> 4+ Years</span>
-        </div>
-        <div class="hero-cta reveal d-2">
-          <a href="#work" class="btn btn-primary" data-cursor="hover" data-magnetic>
-            Explore work <span class="arr">↗</span>
-          </a>
-          <a href="#contact" class="btn btn-ghost" data-cursor="hover" data-magnetic>
-            Get in touch
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-right reveal d-3">
-        <!-- Radar visualization -->
-        <div class="radar-stage" aria-hidden="true">
-          <svg class="radar-svg" viewBox="-100 -100 200 200" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <linearGradient id="sweepGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%"   stop-color="rgb(227, 176, 75)" stop-opacity="0.55"/>
-                <stop offset="100%" stop-color="rgb(227, 176, 75)" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-
-            <!-- Range rings -->
-            <circle r="30"  class="ring" />
-            <circle r="55"  class="ring" />
-            <circle r="80"  class="ring" />
-            <circle r="95"  class="ring-outer" />
-
-            <!-- Crosshairs -->
-            <line x1="-95" y1="0" x2="95" y2="0" class="cross"/>
-            <line x1="0"  y1="-95" x2="0"  y2="95" class="cross"/>
-
-            <!-- Range labels -->
-            <text x="32"  y="-3"  class="range-lbl">100m</text>
-            <text x="57"  y="-3"  class="range-lbl">300m</text>
-            <text x="82"  y="-3"  class="range-lbl">1km</text>
-
-            <!-- Compass markers -->
-            <text x="0"   y="-99" class="angle">N</text>
-            <text x="100" y="2"   class="angle">E</text>
-            <text x="0"   y="104" class="angle">S</text>
-            <text x="-100" y="2"  class="angle" text-anchor="end">W</text>
-
-            <!-- Sweep beam -->
-            <g class="sweep">
-              <path d="M 0,0 L 95,0 A 95,95 0 0 1 67.18,67.18 Z" fill="url(#sweepGrad)" />
-            </g>
-
-            <!-- Pinging UE blips -->
-            <g class="blips">
-              <circle cx="38"  cy="-28" r="2.5" class="blip b1" />
-              <circle cx="-52" cy="22"  r="2.5" class="blip b2" />
-              <circle cx="22"  cy="55"  r="2.5" class="blip b3" />
-              <circle cx="-30" cy="-40" r="2.5" class="blip b4" />
-              <circle cx="65"  cy="30"  r="2.5" class="blip b5" />
-            </g>
-
-            <!-- Center node (gNB) with concentric pulse -->
-            <circle r="12" class="pulse" />
-            <circle r="8"  class="pulse pulse-2" />
-            <circle r="4"  class="center-dot" />
-            <circle r="2"  class="center-core" />
-          </svg>
-
-          <!-- Radar corner annotations -->
-          <div class="radar-corner tl">CELL gNB-001<span class="v">BAND n78</span></div>
-          <div class="radar-corner tr">TDD<span class="v">3.5 GHz</span></div>
-          <div class="radar-corner bl">SWEEP<span class="v">6.0 s</span></div>
-          <div class="radar-corner br">ACTIVE UE<span class="v">05</span></div>
-        </div>
-
-        <!-- Live telemetry HUD -->
-        <div class="telemetry" aria-hidden="true">
-          <div class="telemetry-head">
-            <span class="telemetry-led"></span>
-            <span class="telemetry-title">LIVE TELEMETRY</span>
-            <span class="telemetry-sim" title="Simulated display — decorative">SIM</span>
-            <span class="telemetry-ts" id="ts">--:--:--</span>
-          </div>
-          <div class="telemetry-rows">
-            <div class="row"><span class="k">RSRP</span><span class="v" id="rsrp">-78 dBm</span></div>
-            <div class="row"><span class="k">SINR</span><span class="v" id="sinr">22.4 dB</span></div>
-            <div class="row"><span class="k">DL</span><span class="v accent" id="dl">1.42 Gbps</span></div>
-            <div class="row"><span class="k">UL</span><span class="v" id="ul">0.24 Gbps</span></div>
-            <div class="row"><span class="k">RTT</span><span class="v" id="rtt">12 ms</span></div>
-            <div class="row"><span class="k">STATE</span><span class="v">RRC_CON</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="scroll-cue" aria-hidden="true">
-      <span>SCROLL</span>
-      <span class="ln"></span>
-    </div>
-  </header>
-
-  <!-- Marquee -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>5G NR</span><span class="dot">●</span>
-      <span>LTE Advanced</span><span class="dot">●</span>
-      <span>ORAN</span><span class="dot">●</span>
-      <span>Carrier Aggregation</span><span class="dot">●</span>
-      <span>VoLTE</span><span class="dot">●</span>
-      <span>RRC · PDCP · RLC · MAC</span><span class="dot">●</span>
-      <span>QXDM · Wireshark</span><span class="dot">●</span>
-      <span>Python Automation</span><span class="dot">●</span>
-      <span>Robot Framework</span><span class="dot">●</span>
-      <span>5G NR</span><span class="dot">●</span>
-      <span>LTE Advanced</span><span class="dot">●</span>
-      <span>ORAN</span><span class="dot">●</span>
-      <span>Carrier Aggregation</span><span class="dot">●</span>
-      <span>VoLTE</span><span class="dot">●</span>
-      <span>RRC · PDCP · RLC · MAC</span><span class="dot">●</span>
-      <span>QXDM · Wireshark</span><span class="dot">●</span>
-      <span>Python Automation</span><span class="dot">●</span>
-      <span>Robot Framework</span><span class="dot">●</span>
-    </div>
-  </div>
-
-  <!-- About -->
-  <section id="about" class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">— About</div>
-        <h2>Engineering the <span class="it">invisible</span> infrastructure.</h2>
-      </div>
-      <p class="lead">Four years validating the radio access networks that carry billions of conversations and connections — every day, in every weather, across every band.</p>
-    </div>
-
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>I spend my days in the messy, beautiful intersection of <strong>protocol stacks, real hardware, and customer expectations</strong>. RAN testing isn't about pass/fail — it's about understanding why a UE re-attaches at the cell edge at 3am, or why throughput dips during a specific handover sequence.</p>
-        <p>Currently at <strong>Parallel Wireless</strong> in the Radio R&amp;D group, I design Robot Framework and Python automation for dual-band LTE and 5G stability — multi-UE throughput, attach/detach endurance, and RSRP-controlled long-run tests that catch issues humans wouldn't sit through.</p>
-        <p>Before that, four years at <strong>Mavenir Systems</strong> validating LTE and 5G SA / NSA for <strong>Deutsche Telekom, Virgin Media O2,</strong> and <strong>NEC</strong> — Carrier Aggregation up to 1.4&nbsp;Gbps DL, ORAN CU/DU/RU integration, and root-cause analysis across the full protocol stack.</p>
-        <div class="signature">— Stable. Scalable. Signal-true.</div>
-      </div>
-
-      <div class="stats reveal d-1">
-        <div class="stat">
-          <div class="num"><span class="counter" data-to="4">0</span><span class="unit">+ years</span></div>
-          <div class="lbl">RAN testing &amp; automation</div>
-        </div>
-        <div class="stat">
-          <div class="num"><span class="counter" data-to="3">0</span></div>
-          <div class="lbl">Tier-1 telco clients</div>
-        </div>
-        <div class="stat">
-          <div class="num">1.4<span class="unit">Gbps</span></div>
-          <div class="lbl">Peak DL · 4CA validated</div>
-        </div>
-        <div class="stat">
-          <div class="num"><span class="counter" data-to="72">0</span><span class="unit">h</span></div>
-          <div class="lbl">Longest endurance run</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Work -->
-  <section id="work" class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">— Work</div>
-        <h2>Selected <span class="it">engagements.</span></h2>
-      </div>
-      <p class="lead">A chronological view across radio R&amp;D, feature commercialization, and ORAN system validation for tier-1 European and Asian operators.</p>
-    </div>
-
-    <div class="work-list">
-
-      <article class="work-item reveal">
-        <div class="idx">01 / 04</div>
-        <div>
-          <h3>Parallel Wireless <span class="role">— Sr Engineer, QA, Radio R&amp;D</span></h3>
-          <div class="where">Bangalore, India <span class="client">Stability &amp; Automation · LTE B4/B7 + 5G</span></div>
-          <ul>
-            <li>Designed and automated dual-band LTE <strong>B4/B7 stability and throughput validation</strong> using real UEs.</li>
-            <li>Built reusable Robot Framework &amp; Python keywords for UE feature selection, band mapping, attach validation.</li>
-            <li>Automated simultaneous <strong>multi-UE TCP/UDP bidirectional throughput</strong> testing with KPI validation.</li>
-            <li>Created Python tooling for 8-hour multi-UE attach/detach endurance runs with controlled timers and fail-safes.</li>
-            <li>Implemented <strong>RSRP monitoring with auto-attenuation</strong> to maintain consistent RF baseline during long runs.</li>
-            <li>Refactored scripts into modular, failure-resilient components — cut troubleshooting time across stability cycles.</li>
-          </ul>
-        </div>
-        <div class="when">Nov 2025<br/>— Present</div>
-      </article>
-
-      <article class="work-item reveal">
-        <div class="idx">02 / 04</div>
-        <div>
-          <h3>Mavenir Systems <span class="role">— Member of Technical Staff I</span></h3>
-          <div class="where">Bangalore, India <span class="client">Clients · DTAG · VMO2</span></div>
-          <ul>
-            <li>Validated LTE &amp; 5G features end-to-end: Attach, VoLTE, Carrier Aggregation (<strong>4DL/2UL</strong>), X2/S1 + Intra/Inter DU mobility on real UEs.</li>
-            <li>Executed system-level <strong>NSA &amp; SA coexistence</strong> validation — SCG/MCG mobility, attach, and regression sweeps.</li>
-            <li>Drove TCP/UDP UL/DL throughput &amp; KPI testing — achieved <strong>1.4&nbsp;Gbps DL / 250&nbsp;Mbps UL</strong> with CA.</li>
-            <li>Ran 8–72-hour endurance and mixed-traffic stability across LTE / NSA / SA coexistence scenarios.</li>
-            <li>Root-caused handover, attach, and throughput regressions using QXDM, Wireshark, XCAL, PCAT.</li>
-            <li>Recreated and validated <strong>customer-reported field issues</strong> under mixed traffic loads.</li>
-            <li>Developed regression and negative test cases; supported automation-driven stability runs.</li>
-          </ul>
-        </div>
-        <div class="when">Feb 2023<br/>— Oct 2025</div>
-      </article>
-
-      <article class="work-item reveal">
-        <div class="idx">03 / 04</div>
-        <div>
-          <h3>Mavenir Systems <span class="role">— Graduate Engineer</span></h3>
-          <div class="where">Bangalore, India <span class="client">Clients · NEC · DTAG</span></div>
-          <ul>
-            <li>Executed end-to-end 5G SA validation across ORAN architecture (<strong>CP / UP / DU / RU</strong>) — Inter/Intra DU HO, attach, throughput.</li>
-            <li>Deep protocol stack analysis (RRC, PDCP, RLC, MAC, PHY) — debugged L1/L2 attach &amp; handover anomalies.</li>
-            <li>Achieved <strong>30% improvement</strong> in system stability via long-run / mixed-traffic testing and stress validation.</li>
-            <li>Led feature commercialization: recreated field issues, analyzed logs, delivered <strong>3GPP-compliant</strong> root-cause reports.</li>
-          </ul>
-        </div>
-        <div class="when">Feb 2022<br/>— Jan 2023</div>
-      </article>
-
-      <article class="work-item reveal">
-        <div class="idx">04 / 04</div>
-        <div>
-          <h3>CMR Institute of Technology <span class="role">— Education</span></h3>
-          <div class="where">Hyderabad, India <span class="client">B.Tech · Electronics &amp; Communication · GPA 3.55 / 4.0</span></div>
-          <ul>
-            <li>Bachelor of Technology in Electronics &amp; Communication Engineering with focus on signal processing, communications, and embedded systems.</li>
-            <li>Foundation in antenna theory, digital communications, microprocessor design, and DSP — the substrate for everything that came after.</li>
-          </ul>
-        </div>
-        <div class="when">Aug 2017<br/>— May 2021</div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- Capabilities -->
-  <section id="capabilities" class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">— Capabilities</div>
-        <h2>Toolkit, <span class="it">refined.</span></h2>
-      </div>
-      <p class="lead">A telecom and automation stack built across 4+ years of LTE / 5G NR validation, ORAN integration, and real-UE field debugging.</p>
-    </div>
-
-    <div class="capabilities-layout">
-
-      <aside class="protocol-stage reveal">
-        <div class="ps-card">
-          <div class="ps-head">
-            <div>
-              <div class="ps-title">Skill Constellation</div>
-              <div class="ps-sub">Always orbiting · always learning</div>
-            </div>
-            <div class="ps-spec">15 + tools</div>
-          </div>
-
-          <div class="orbit-stage" id="orbitStage">
-            <!-- Dashed orbital rings -->
-            <div class="orbit-ring r-inner"  aria-hidden="true"></div>
-            <div class="orbit-ring r-middle" aria-hidden="true"></div>
-            <div class="orbit-ring r-outer"  aria-hidden="true"></div>
-
-            <!-- Central antenna hub -->
-            <div class="orbit-hub" aria-hidden="true">
-              <div class="core">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-                  <!-- Antenna mast -->
-                  <line x1="16" y1="28" x2="16" y2="14"/>
-                  <!-- Signal waves -->
-                  <path d="M 7 13 Q 16 4 25 13" opacity="0.9"/>
-                  <path d="M 11 14.5 Q 16 9 21 14.5" opacity="0.55"/>
-                  <!-- Base -->
-                  <circle cx="16" cy="28" r="1.6" fill="currentColor"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Inner ring: 3 core competencies -->
-            <div class="orbit-chip" data-radius="32" data-angle="0"   data-speed="13"  data-color="amber"><span>5G NR</span></div>
-            <div class="orbit-chip" data-radius="32" data-angle="120" data-speed="13"  data-color="cyan"><span>LTE</span></div>
-            <div class="orbit-chip" data-radius="32" data-angle="240" data-speed="13"  data-color="sage"><span>ORAN</span></div>
-
-            <!-- Middle ring: 5 tools / protocols (counter-rotating) -->
-            <div class="orbit-chip" data-radius="48" data-angle="18"  data-speed="-8"  data-color="lavender"><span>QXDM</span></div>
-            <div class="orbit-chip" data-radius="48" data-angle="90"  data-speed="-8"  data-color="amber"><span>Wireshark</span></div>
-            <div class="orbit-chip" data-radius="48" data-angle="162" data-speed="-8"  data-color="cyan"><span>Python</span></div>
-            <div class="orbit-chip" data-radius="48" data-angle="234" data-speed="-8"  data-color="coral"><span>RRC</span></div>
-            <div class="orbit-chip" data-radius="48" data-angle="306" data-speed="-8"  data-color="sage"><span>PDCP</span></div>
-
-            <!-- Outer ring: 7 broader skills -->
-            <div class="orbit-chip" data-radius="65" data-angle="6"   data-speed="5"   data-color="amber"><span>VoLTE</span></div>
-            <div class="orbit-chip" data-radius="65" data-angle="57"  data-speed="5"   data-color="lavender"><span>Robot</span></div>
-            <div class="orbit-chip" data-radius="65" data-angle="108" data-speed="5"   data-color="coral"><span>4CA</span></div>
-            <div class="orbit-chip" data-radius="65" data-angle="159" data-speed="5"   data-color="cyan"><span>X2/S1</span></div>
-            <div class="orbit-chip" data-radius="65" data-angle="210" data-speed="5"   data-color="sage"><span>MAC</span></div>
-            <div class="orbit-chip" data-radius="65" data-angle="261" data-speed="5"   data-color="yellow"><span>PHY</span></div>
-            <div class="orbit-chip" data-radius="65" data-angle="312" data-speed="5"   data-color="lavender"><span>RLC</span></div>
-          </div>
-
-          <div class="ps-footer">
-            <span class="ps-tag"></span>
-            <span>Hover to pause &amp; read</span>
-          </div>
-        </div>
-      </aside>
-
-      <div class="cap-grid">
-
-      <div class="cap reveal">
-        <div class="num">01</div>
-        <h4>Wireless Technologies</h4>
-        <div class="chips">
-          <span class="chip">LTE TDD / FDD</span>
-          <span class="chip">5G SA TDD / FDD</span>
-          <span class="chip">SA–NSA Coexist</span>
-          <span class="chip">VoLTE</span>
-          <span class="chip">Carrier Aggregation 4CA DL / 2CA UL</span>
-          <span class="chip">X2 / S1 Handover</span>
-          <span class="chip">ORAN CU / DU / RU</span>
-          <span class="chip">Multi-vendor Integration</span>
-        </div>
-      </div>
-
-      <div class="cap reveal d-1">
-        <div class="num">02</div>
-        <h4>Protocol Stack</h4>
-        <div class="chips">
-          <span class="chip">RRC</span>
-          <span class="chip">PDCP</span>
-          <span class="chip">RLC</span>
-          <span class="chip">MAC</span>
-          <span class="chip">PHY (L1)</span>
-          <span class="chip">NAS</span>
-          <span class="chip">S1AP / X2AP</span>
-          <span class="chip">3GPP Compliance</span>
-        </div>
-      </div>
-
-      <div class="cap reveal">
-        <div class="num">03</div>
-        <h4>Testing &amp; Validation</h4>
-        <div class="chips">
-          <span class="chip">Sanity / Regression</span>
-          <span class="chip">Patch Testing</span>
-          <span class="chip">Throughput &amp; KPI</span>
-          <span class="chip">Stress / Long-run</span>
-          <span class="chip">Intra / Inter DU HO</span>
-          <span class="chip">CMAS / ETWS</span>
-          <span class="chip">Endurance 8–72h</span>
-          <span class="chip">Negative Testing</span>
-        </div>
-      </div>
-
-      <div class="cap reveal d-1">
-        <div class="num">04</div>
-        <h4>Log Analysis &amp; Debug</h4>
-        <div class="chips">
-          <span class="chip">QXDM</span>
-          <span class="chip">QCAT</span>
-          <span class="chip">PCAT</span>
-          <span class="chip">XCAL</span>
-          <span class="chip">Wireshark</span>
-          <span class="chip">TCP Dump</span>
-          <span class="chip">L1/L2 Root Cause</span>
-        </div>
-      </div>
-
-      <div class="cap reveal">
-        <div class="num">05</div>
-        <h4>Automation &amp; Scripting</h4>
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">Robot Framework</span>
-          <span class="chip">Multi-UE Orchestration</span>
-          <span class="chip">RSRP Monitoring</span>
-          <span class="chip">RF Baseline Validation</span>
-          <span class="chip">Auto-attenuation</span>
-          <span class="chip">CI-friendly Test Suites</span>
-        </div>
-      </div>
-
-      <div class="cap reveal d-1">
-        <div class="num">06</div>
-        <h4>Simulators &amp; Real UEs</h4>
-        <div class="chips">
-          <span class="chip">TM500</span>
-          <span class="chip">Dingli</span>
-          <span class="chip">OnePlus</span>
-          <span class="chip">Samsung</span>
-          <span class="chip">Telit</span>
-          <span class="chip">COMPAL</span>
-        </div>
-      </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Focus -->
-  <section id="focus" class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">— Focus areas</div>
-        <h2>Where I <span class="it">add leverage.</span></h2>
-      </div>
-      <p class="lead">A few specific places I tend to move the needle — from automation that runs while the lab sleeps, to debug that catches the issue customers haven't reported yet.</p>
-    </div>
-
-    <div class="focus-list">
-
-      <article class="focus reveal" data-cursor="hover">
-        <div class="f-no">01.</div>
-        <div>
-          <div class="meta-tag">Automation Framework</div>
-          <h3>Multi-UE stability &amp; throughput</h3>
-        </div>
-        <p>Robot Framework + Python keywords for dual-band LTE stability, simultaneous multi-UE TCP/UDP throughput, and KPI validation with RSRP-controlled baseline.</p>
-        <div class="stack">
-          <span>Python</span><span>Robot</span><span>LTE</span><span>Multi-UE</span>
-        </div>
-      </article>
-
-      <article class="focus reveal" data-cursor="hover">
-        <div class="f-no">02.</div>
-        <div>
-          <div class="meta-tag">5G NR Validation</div>
-          <h3>5G SA / ORAN end-to-end</h3>
-        </div>
-        <p>End-to-end 5G SA across ORAN architecture (CP/UP/DU/RU): Inter/Intra DU HO, attach, throughput, mobility, cell reselection — 3GPP compliant.</p>
-        <div class="stack">
-          <span>5G SA</span><span>ORAN</span><span>NEC</span><span>DTAG</span>
-        </div>
-      </article>
-
-      <article class="focus reveal" data-cursor="hover">
-        <div class="f-no">03.</div>
-        <div>
-          <div class="meta-tag">LTE Feature</div>
-          <h3>Feature testing &amp; coexistence</h3>
-        </div>
-        <p>Validated Attach, VoLTE, Carrier Aggregation (4DL/2UL → 1.4 Gbps DL), X2/S1 + Intra/Inter DU mobility across mixed traffic and SA–NSA coexistence.</p>
-        <div class="stack">
-          <span>LTE</span><span>VoLTE</span><span>CA</span><span>VMO2</span>
-        </div>
-      </article>
-
-      <article class="focus reveal" data-cursor="hover">
-        <div class="f-no">04.</div>
-        <div>
-          <div class="meta-tag">Protocol Debug</div>
-          <h3>L1/L2 root-cause analysis</h3>
-        </div>
-        <p>Deep-dive debug with QXDM, Wireshark, XCAL, PCAT — handover failures, attach anomalies, and throughput degradations resolved across the protocol stack.</p>
-        <div class="stack">
-          <span>RRC</span><span>PDCP</span><span>RLC</span><span>MAC</span><span>PHY</span>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- Recognition -->
-  <section id="recognition" class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">— Recognition</div>
-        <h2>Awards &amp; <span class="it">credentials.</span></h2>
-      </div>
-      <p class="lead">Recognition from peers and operators, alongside the foundational learning that supports the work.</p>
-    </div>
-
-    <div class="recog-grid">
-
-      <div class="recog reveal">
-        <div class="ribbon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/>
-          </svg>
-        </div>
-        <div class="type">Spotlight Award</div>
-        <h4>Customer Focus</h4>
-        <p class="issuer">Mavenir Systems · 2024</p>
-      </div>
-
-      <div class="recog reveal d-1">
-        <div class="ribbon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M4 4h16v4H4zM4 12h16v4H4zM4 20h10"/>
-          </svg>
-        </div>
-        <div class="type">Certificate</div>
-        <h4>Python for Everybody</h4>
-        <p class="issuer">Udemy · 2021</p>
-      </div>
-
-      <div class="recog reveal d-2">
-        <div class="ribbon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/>
-          </svg>
-        </div>
-        <div class="type">Degree</div>
-        <h4>B.Tech, Electronics &amp; Communication</h4>
-        <p class="issuer">CMR Institute of Technology · 2021</p>
-      </div>
-
-      <div class="recog reveal d-3">
-        <div class="ribbon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>
-          </svg>
-        </div>
-        <div class="type">3GPP</div>
-        <h4>Compliance &amp; standards aware</h4>
-        <p class="issuer">Hands-on across Releases</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="contact wrap">
-    <div class="small-cap reveal">— Get in touch</div>
-    <h2 class="reveal d-1">Let's build something <span class="it">signal-true.</span></h2>
-    <p class="blurb reveal d-2">Open to RAN / Radio System &amp; Automation Test Engineer roles, contract validation work, and ORAN consulting. Reach out — I read every message.</p>
-    <a href="mailto:pardhasaradhi7477@gmail.com" class="mail-link reveal d-3" data-cursor="link" data-magnetic>
-      pardhasaradhi7477@gmail.com
-      <span class="arr">↗</span>
-    </a>
-    <div class="contact-meta reveal d-3">
-      <span>Bangalore, India</span>
-      <a href="tel:+918247087692">+91 82470 87692</a>
-      <a href="https://www.linkedin.com/in/pardha-saradhi-chandana-system-engineer/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://github.com/pardha-saradhi411" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="foot">
-      <div class="col">
-        <h5>— Contact</h5>
-        <a href="mailto:pardhasaradhi7477@gmail.com">pardhasaradhi7477@gmail.com</a>
-        <a href="tel:+918247087692">+91 82470 87692</a>
-        <p>Bangalore, India</p>
-      </div>
-      <div class="logo-big">PSC.</div>
-      <div class="col right">
-        <h5>— Social</h5>
-        <a href="https://www.linkedin.com/in/pardha-saradhi-chandana-system-engineer/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a href="https://github.com/pardha-saradhi411" target="_blank" rel="noopener">GitHub ↗</a>
-        <a href="mailto:pardhasaradhi7477@gmail.com">Email ↗</a>
-      </div>
-    </div>
-    <div class="colophon">
-      <span>© 2026 PARDHA SARADHI CHANDANA</span>
-      <span>RAN / RADIO SYSTEM &amp; AUTOMATION TEST ENGINEER</span>
-      <span>DESIGNED &amp; CRAFTED WITH CARE</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-/* ════════════════════════════════════════════════════
-   Network mesh canvas — full-page interactive particles
-   ════════════════════════════════════════════════════ */
-(function () {
-  const canvas = document.getElementById('meshCanvas');
-  if (!canvas) return;
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) { canvas.style.display = 'none'; return; }
-
-  const ctx = canvas.getContext('2d');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  let W = 0, H = 0;
-  const mouse = { x: -9999, y: -9999, active: false };
-  let particles = [];
-
-  const SKILLS = ['5G NR', 'LTE', 'ORAN', 'VoLTE', 'QXDM', 'Wireshark', 'Python', 'RRC', 'CA', 'Robot'];
-
-  function resize() {
-    W = window.innerWidth;
-    H = window.innerHeight;
-    canvas.width  = W * dpr;
-    canvas.height = H * dpr;
-    canvas.style.width  = W + 'px';
-    canvas.style.height = H + 'px';
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
-  }
-
-  function spawn() {
-    const count = W < 700 ? 38 : (W < 1200 ? 60 : 80);
-    particles = [];
-    for (let i = 0; i < count; i++) {
-      const isSkill = i < SKILLS.length;
-      particles.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.18,
-        vy: (Math.random() - 0.5) * 0.18,
-        r: isSkill ? 2.6 : 1.2,
-        label: isSkill ? SKILLS[i] : null,
-      });
-    }
-  }
-
-  function tick() {
-    ctx.clearRect(0, 0, W, H);
-    const ps = particles;
-    const link2 = 18000; // ~134px squared connection distance
-    const mouseR2 = 22500; // 150px squared influence
-
-    for (const p of ps) {
-      if (mouse.active) {
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const d2 = dx*dx + dy*dy;
-        if (d2 < mouseR2 && d2 > 0.001) {
-          const d = Math.sqrt(d2);
-          const f = (1 - d / 150) * 0.5;
-          p.vx += (dx / d) * f;
-          p.vy += (dy / d) * f;
-        }
-      }
-      p.x += p.vx; p.y += p.vy;
-      p.vx *= 0.97; p.vy *= 0.97;
-      p.vx += (Math.random() - 0.5) * 0.025;
-      p.vy += (Math.random() - 0.5) * 0.025;
-      if (p.x < -20) p.x = W + 20;
-      if (p.x > W + 20) p.x = -20;
-      if (p.y < -20) p.y = H + 20;
-      if (p.y > H + 20) p.y = -20;
-    }
-
-    // Connections
-    ctx.lineWidth = 0.5;
-    for (let i = 0; i < ps.length; i++) {
-      for (let j = i + 1; j < ps.length; j++) {
-        const a = ps[i], b = ps[j];
-        const dx = a.x - b.x, dy = a.y - b.y;
-        const d2 = dx*dx + dy*dy;
-        if (d2 < link2) {
-          const alpha = (1 - d2 / link2) * 0.09;
-          ctx.strokeStyle = 'rgba(239, 232, 219, ' + alpha + ')';
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-        }
-      }
-    }
-
-    // Particles + labels
-    ctx.font = '10px "JetBrains Mono", monospace';
-    for (const p of ps) {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.label ? 'rgba(227, 176, 75, 0.55)' : 'rgba(239, 232, 219, 0.20)';
-      ctx.fill();
-      if (p.label) {
-        ctx.fillStyle = 'rgba(184, 177, 164, 0.35)';
-        ctx.fillText(p.label, p.x + 7, p.y - 5);
-      }
-    }
-
-    requestAnimationFrame(tick);
-  }
-
-  resize(); spawn();
-  let rt;
-  window.addEventListener('resize', () => {
-    clearTimeout(rt);
-    rt = setTimeout(() => { resize(); spawn(); }, 200);
-  });
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
-  });
-  window.addEventListener('mouseleave', () => { mouse.active = false; });
-  window.addEventListener('touchmove', (e) => {
-    if (e.touches[0]) {
-      mouse.x = e.touches[0].clientX;
-      mouse.y = e.touches[0].clientY;
-      mouse.active = true;
-    }
-  }, { passive: true });
-  window.addEventListener('touchend', () => { mouse.active = false; });
-  requestAnimationFrame(tick);
-})();
-
-/* ════════════════════════════════════════════════════
-   Live telemetry — RSRP / SINR / DL / UL / RTT
-   ════════════════════════════════════════════════════ */
-(function () {
-  function jit(base, range, dp) {
-    const n = base + (Math.random() - 0.5) * range;
-    return n.toFixed(dp);
-  }
-  function update() {
-    const ts = new Date();
-    const pad = (n) => String(n).padStart(2, '0');
-    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-
-    set('rsrp', jit(-78, 6, 0) + ' dBm');
-    set('sinr', jit(22, 3, 1) + ' dB');
-    set('dl',   jit(1.40, 0.18, 2) + ' Gbps');
-    set('ul',   jit(0.24, 0.06, 2) + ' Gbps');
-    set('rtt',  Math.max(8, Math.round(jit(12, 4, 0))) + ' ms');
-    set('ts',   pad(ts.getHours()) + ':' + pad(ts.getMinutes()) + ':' + pad(ts.getSeconds()));
-  }
-  update();
-  setInterval(update, 1400);
-})();
-
-/* ════════════════════════════════════════════════════
-   Orbital skill constellation — chips orbit smoothly,
-   pause on hover, text stays upright at all times
-   ════════════════════════════════════════════════════ */
-(function () {
-  const stage = document.getElementById('orbitStage');
-  if (!stage) return;
-  const chips = stage.querySelectorAll('.orbit-chip');
-  if (!chips.length) return;
-
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Pre-parse chip data once
-  const data = Array.from(chips).map((el) => ({
-    el,
-    radius:    parseFloat(el.dataset.radius),
-    baseAngle: parseFloat(el.dataset.angle),
-    speed:     parseFloat(el.dataset.speed), // deg/sec
-  }));
-
-  let paused = false;
-  let pauseAt = 0;
-  let totalOffset = 0; // accumulated paused milliseconds
-
-  stage.addEventListener('mouseenter', () => {
-    if (!paused) { paused = true; pauseAt = performance.now(); }
-  });
-  stage.addEventListener('mouseleave', () => {
-    if (paused) { totalOffset += performance.now() - pauseAt; paused = false; }
-  });
-
-  function position(item, effectiveT) {
-    const angle = item.baseAngle + (effectiveT / 1000) * item.speed;
-    const rad = angle * Math.PI / 180;
-    const x = 50 + item.radius * Math.cos(rad);
-    const y = 50 + item.radius * Math.sin(rad);
-    item.el.style.left = x + '%';
-    item.el.style.top  = y + '%';
-  }
-
-  // Initial frame so chips show in correct position before first rAF
-  data.forEach((d) => position(d, 0));
-
-  if (reduce) return; // respect reduced motion
-
-  function tick(t) {
-    const effective = (paused ? pauseAt : t) - totalOffset;
-    for (const d of data) position(d, effective);
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-})();
-
-/* ════════════════════════════════════════════════════
-   Custom cursor (dual-element with morph states)
-   ════════════════════════════════════════════════════ */
-(function () {
-  const outer = document.getElementById('cursorOuter');
-  const inner = document.getElementById('cursorInner');
-  if (!outer || !inner) return;
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    outer.style.display = 'none'; inner.style.display = 'none'; return;
-  }
-  let mx = innerWidth / 2, my = innerHeight / 2, ox = mx, oy = my;
-
-  document.addEventListener('mousemove', (e) => {
-    mx = e.clientX; my = e.clientY;
-    inner.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-  });
-  (function loop() {
-    ox += (mx - ox) * 0.18;
-    oy += (my - oy) * 0.18;
-    outer.style.transform = `translate(${ox}px, ${oy}px) translate(-50%, -50%)`;
-    requestAnimationFrame(loop);
-  })();
-
-  document.querySelectorAll('a, button, [data-cursor]').forEach((el) => {
-    const mode = el.getAttribute('data-cursor');
-    el.addEventListener('mouseenter', () => {
-      outer.classList.add('is-hover');
-      if (mode === 'link') outer.classList.add('is-link');
-      if (mode === 'text') outer.classList.add('is-text');
-    });
-    el.addEventListener('mouseleave', () => {
-      outer.classList.remove('is-hover', 'is-link', 'is-text');
-    });
-  });
-
-  document.addEventListener('mouseleave', () => { outer.style.opacity = 0; inner.style.opacity = 0; });
-  document.addEventListener('mouseenter', () => { outer.style.opacity = 1; inner.style.opacity = 1; });
-})();
-
-/* ════════════════════════════════════════════════════
-   Magnetic CTAs
-   ════════════════════════════════════════════════════ */
-(function () {
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  document.querySelectorAll('[data-magnetic]').forEach((el) => {
-    el.addEventListener('mousemove', (e) => {
-      const r = el.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width / 2;
-      const y = e.clientY - r.top - r.height / 2;
-      el.style.transform = `translate(${x * 0.18}px, ${y * 0.22}px)`;
-    });
-    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
-  });
-})();
-
-/* ════════════════════════════════════════════════════
-   Reveal on scroll + name split-text
-   ════════════════════════════════════════════════════ */
-(function () {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-  setTimeout(() => {
-    const s = document.getElementById('splitName');
-    if (s) s.classList.add('in');
-  }, 250);
-})();
-
-/* ════════════════════════════════════════════════════
-   Number counters
-   ════════════════════════════════════════════════════ */
-(function () {
-  const counters = document.querySelectorAll('.counter');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
-      const target = parseInt(el.dataset.to, 10);
-      const dur = 1100, start = performance.now();
-      function step(t) {
-        const p = Math.min(1, (t - start) / dur);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(target * eased);
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-      io.unobserve(el);
-    });
-  }, { threshold: 0.4 });
-  counters.forEach((c) => io.observe(c));
-})();
-
-/* ════════════════════════════════════════════════════
-   Top nav hide-on-scroll-down + side-nav active state
-   ════════════════════════════════════════════════════ */
-(function () {
-  const sections = ['top', 'about', 'work', 'capabilities', 'focus', 'recognition', 'contact'];
-  const links = document.querySelectorAll('.side-nav a');
-  const nav = document.getElementById('nav');
-  let lastY = 0;
-
-  function update() {
-    const y = window.scrollY;
-    if (y > 80 && y > lastY) nav.classList.add('hidden');
-    else nav.classList.remove('hidden');
-    lastY = y;
-
-    let active = sections[0];
-    for (const id of sections) {
-      const el = document.getElementById(id);
-      if (!el) continue;
-      const top = el.getBoundingClientRect().top;
-      if (top <= window.innerHeight * 0.4) active = id;
-    }
-    links.forEach((l) => { l.classList.toggle('active', l.dataset.target === active); });
-  }
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-})();
-
-/* ════════════════════════════════════════════════════
-   Mobile menu
-   ════════════════════════════════════════════════════ */
-(function () {
-  const btn = document.getElementById('menuBtn');
-  const links = document.getElementById('navLinks');
-  if (!btn) return;
-  btn.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => links.classList.remove('open')));
-})();
-</script>
-
-</body>
-</html>
+  .profile-socials a {
+    flex
