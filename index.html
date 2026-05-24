@@ -12,7 +12,9 @@
 <meta property="og:type" content="profile" />
 <meta property="og:locale" content="en_US" />
 <meta name="theme-color" content="#0c0c0d" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c0c0d'/%3E%3Cg fill='none' stroke='%23e3b04b' stroke-width='2.2' stroke-linecap='round'%3E%3Cline x1='16' y1='26' x2='16' y2='13'/%3E%3Cpath d='M 7 13 Q 16 4 25 13'/%3E%3Cpath d='M 10.5 14.5 Q 16 9 21.5 14.5'/%3E%3C/g%3E%3Ccircle cx='16' cy='26' r='1.7' fill='%23e3b04b'/%3E%3C/svg%3E" />
 <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="assets/img/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -621,13 +623,16 @@
 
   .focus-list { display: grid; gap: 14px; }
   .focus {
-    display: grid; grid-template-columns: 0.6fr 1fr 1fr auto;
-    gap: 40px; padding: 36px;
+    display: grid; grid-template-columns: 80px 280px 1fr 200px;
+    gap: 32px; padding: 36px;
     border: 1px solid var(--hairline);
     background: rgba(19, 19, 22, 0.4);
     border-radius: 4px;
     transition: border-color .35s var(--ease), background .35s var(--ease);
     align-items: start; position: relative; overflow: hidden;
+  }
+  @media (max-width: 1100px) {
+    .focus { grid-template-columns: 60px 220px 1fr 160px; gap: 24px; padding: 28px; }
   }
   .focus::before {
     content: ''; position: absolute;
@@ -1135,7 +1140,7 @@
     <div class="about-grid">
       <div class="about-text reveal">
         <p>I spend my days in the messy, beautiful intersection of <strong>protocol stacks, real hardware, and customer expectations</strong>. RAN testing isn't about pass/fail - it's about understanding why a UE re-attaches at the cell edge at 3am, or why throughput dips during a specific handover sequence.</p>
-        <p>Currently at <strong>Parallel Wireless</strong> in the Radio R&amp;D group, I validate <strong>O-RAN Radio Unit (RU)</strong> features — <strong>M-Plane management</strong>, alarm handling, <strong>RCT workflows</strong>, RU recovery flows, and <strong>eTilt operations</strong> — and design Robot Framework + Python automation for dual-band LTE/5G stability: multi-UE throughput, attach/detach endurance, and RSRP-controlled long-run tests.</p>
+        <p>Currently at <strong>Parallel Wireless</strong> in the Radio R&amp;D group, I validate <strong>O-RAN Radio Unit (RU)</strong> features — <strong>M-Plane management</strong>, alarm handling, <strong>RCT workflows</strong>, RU recovery flows, and <strong>eTilt operations</strong> — across <strong>4 &amp; 5-Band AAU</strong> deployments for <strong>Ooredoo</strong>, <strong>V Mobile</strong>, and <strong>PNG Mobile</strong> networks. Backed by Robot Framework + Python automation for dual-band LTE/5G stability: multi-UE throughput, attach/detach endurance, and RSRP-controlled long-run tests.</p>
         <p>Before that, four years at <strong>Mavenir Systems</strong> validating LTE and 5G SA / NSA for <strong>Deutsche Telekom (DTAG)</strong>, <strong>Virgin Media O2 (VMO2)</strong>, <strong>NEC</strong>, <strong>Ooredoo</strong>, <strong>V Mobile</strong>, and <strong>PNG networks</strong> — Carrier Aggregation up to 1.4&nbsp;Gbps DL, O-RAN CU/DU/RU integration, and root-cause analysis across the full protocol stack.</p>
         <div class="signature">- Stable. Scalable. Signal-true.</div>
       </div>
@@ -1154,8 +1159,8 @@
           <div class="lbl">Peak DL &middot; 4CA validated</div>
         </div>
         <div class="stat">
-          <div class="num"><span class="counter" data-to="72">0</span><span class="unit">h</span></div>
-          <div class="lbl">Longest endurance run</div>
+          <div class="num">4 &amp; 5<span class="unit">Band</span></div>
+          <div class="lbl">AAU configurations &middot; RCT validated</div>
         </div>
       </div>
     </div>
