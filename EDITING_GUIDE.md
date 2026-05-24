@@ -18,6 +18,7 @@ A practical walkthrough for editing your portfolio (`index.html`). The whole sit
 8. [Sharing on LinkedIn](#8-sharing-on-linkedin)
 9. [Common edits — quick recipes](#9-common-edits--quick-recipes)
 10. [Troubleshooting](#10-troubleshooting)
+11. [Asset locations — resume, photo, certificate images](#11-asset-locations--resume-photo-certificate-images)
 
 ---
 
@@ -622,6 +623,160 @@ LinkedIn caches for ~7 days. Use the [Post Inspector](https://www.linkedin.com/p
 
 **Layout looks off on mobile**
 The site is responsive, but if you've added long unbreakable strings (URLs, code, etc.), wrap them in `<span style="word-break:break-all">…</span>`.
+
+---
+
+## 11. Asset locations — resume, photo, certificate images
+
+Everything the portfolio displays lives in your portfolio repo: **`pardha-saradhi411/pardhasaradhichandana.github.io`**. Files in the root of the repo are served at the root of your site URL. Subfolders work too — you'll reference them with relative paths.
+
+### 11.1 Resume PDF
+
+**Repo path:** `resume.pdf` (exactly that filename, in the root of the repo)
+**Referenced by:** the "Download Resume" button on the profile card in the Contact section, plus the "Resume ↓" link in the footer.
+
+**How to upload:**
+1. Go to https://github.com/pardha-saradhi411/pardhasaradhichandana.github.io
+2. Click **Add file → Upload files**
+3. Drag in your PDF. If it's named like `Pardha Saradhi Chandana resume.pdf`, **rename it to exactly `resume.pdf`** before or during the upload (lowercase, no spaces).
+4. Commit message: `Add resume PDF`
+5. Click **Commit changes**
+
+Until you do this step, both download buttons will return a 404.
+
+**Format notes:**
+- PDF only — `.docx` and `.pages` won't preview in the browser
+- Keep under ~2 MB for fast downloads (use Acrobat → Reduce File Size, or [smallpdf.com](https://smallpdf.com) → Compress)
+- Embed fonts when exporting so it renders the same on every machine
+- Re-upload (with the same filename) every time you update your resume
+
+### 11.2 Profile picture
+
+**Repo path:** `profile_picture.jpg` (already in your repo)
+**Referenced by:** the circular 64×64 avatar on the profile card.
+
+In `index.html` the reference looks like:
+```html
+<img src="profile_picture.jpg" alt="Pardha Saradhi Chandana"
+     onerror="this.parentElement.textContent='PSC'; ..." />
+```
+
+**To replace with a different photo:**
+- Easiest: keep the same filename. Upload a new image to the repo with the name `profile_picture.jpg` — GitHub will overwrite the old one. The portfolio shows the new photo on next refresh.
+- If you want a different filename, also update the `src=` in `index.html`.
+
+**Format notes:**
+- Square aspect ratio, minimum 256×256 (will be displayed at 64×64 but high-density screens render at 128px or more)
+- JPG or PNG — JPG is smaller for photos, PNG if there's transparency
+- Crop to your face — the circular mask trims edges
+
+**Built-in fallback:** if the image fails to load, the avatar circle falls back to showing "PSC" initials. Useful safety net but you don't need to rely on it.
+
+### 11.3 Certificate images (currently icons — optional upgrade)
+
+The Recognition section currently uses SVG icons (ribbon, document, certificate, checkmark) on the front of each flip card. If you have actual scans / photos of your certificates, you can swap them in.
+
+**Suggested repo structure:**
+```
+pardhasaradhichandana.github.io/
+├── index.html
+├── resume.pdf
+├── profile_picture.jpg
+├── assets/
+│   └── certs/
+│       ├── spotlight-2024.jpg     ← Mavenir Customer Focus award
+│       ├── python-2021.jpg        ← Udemy Python for Everybody
+│       ├── btech-2021.jpg         ← CMRIT B.Tech degree
+│       └── 3gpp.jpg               ← optional 3GPP badge
+├── EDITING_GUIDE.md
+└── LAUNCH_GUIDE.md
+```
+
+**How to upload images into a subfolder on GitHub:**
+1. In your repo, click **Add file → Create new file**
+2. In the filename field, type: `assets/certs/spotlight-2024.jpg` (typing slashes creates folders automatically)
+3. Hit backspace once to clear the name, then click "Cancel"
+4. Now use **Add file → Upload files** — drag your images into the upload area, GitHub keeps them in the folder you created.
+5. Commit
+
+(Alternative: just create the folder in your local repo clone, drop images in, and `git push`.)
+
+**Wiring images into the flip cards:**
+
+In `index.html`, find the first flip card. Look for this block (inside `flip-card-front`):
+
+```html
+<div class="ribbon">
+  <svg width="16" height="16" viewBox="0 0 24 24" ...>
+    <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/>
+  </svg>
+</div>
+```
+
+Replace it with:
+
+```html
+<div class="cert-image">
+  <img src="assets/certs/spotlight-2024.jpg" alt="Customer Focus Award" />
+</div>
+```
+
+Then add this CSS once, anywhere in the `<style>` block (near the flip-card styles is logical):
+
+```css
+.cert-image {
+  width: 100%;
+  height: 110px;
+  margin-bottom: 14px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+}
+.cert-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+```
+
+Repeat the same swap for each of the four flip cards (Python, B.Tech, 3GPP) — each gets its own image.
+
+**Format notes for cert images:**
+- Minimum 600×400, JPG or PNG
+- Landscape aspect ratio fits the 110px-tall slot best
+- For sensitive certificates (with personal info / certificate numbers), redact them in an image editor before uploading — they'll be public on the internet
+- Filenames lowercase with hyphens, no spaces: `spotlight-2024.jpg`, not `Spotlight Award 2024.jpg`
+
+### 11.4 Anything else (screenshots, lab photos, project images)
+
+Same pattern: put files in `assets/` (or a sub-folder), reference them with relative paths.
+
+```html
+<img src="assets/lab-setup.jpg" alt="LTE B4/B7 lab setup" />
+```
+
+**Useful tools for prepping images:**
+- Compress before uploading: [tinypng.com](https://tinypng.com) (works for JPG too despite the name) or [squoosh.app](https://squoosh.app)
+- Crop / resize: [photopea.com](https://www.photopea.com) (free in-browser Photoshop)
+- Convert to web-friendly format: [cloudconvert.com](https://cloudconvert.com)
+
+### 11.5 Quick checklist
+
+Once you've added everything, your repo root should look like:
+
+```
+✅ index.html                      ← portfolio
+✅ resume.pdf                      ← upload this
+✅ profile_picture.jpg             ← already there
+⬜ preview.jpg                     ← optional, for LinkedIn previews (1200×630)
+⬜ CNAME                           ← only AFTER is-a.dev PR is merged
+⬜ assets/certs/*.jpg              ← optional, if swapping out cert icons
+✅ EDITING_GUIDE.md
+✅ LAUNCH_GUIDE.md
+```
+
+Old template files (`assets/`, `css/`, `js/`, `scss/`, `vendor/`, `forms/`, `*-details.html` files) can be deleted whenever you're ready — the new `index.html` doesn't depend on any of them.
 
 ---
 
