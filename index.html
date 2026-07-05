@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pardha Saradhi Chandana — RAN / Radio System & Automation Test Engineer</title>
-<meta name="description" content="RAN / Radio System & Automation Test Engineer with 4+ years validating LTE & 5G NR networks. Specialising in ORAN, protocol debug, and Python / Robot Framework automation." />
-<meta name="keywords" content="RAN Test Engineer, 5G NR, LTE, ORAN, Carrier Aggregation, VoLTE, QXDM, Wireshark, Python Automation, Robot Framework, Parallel Wireless, Mavenir" />
+<title>Pardha Saradhi Chandana — Senior LTE/5G NR Test Engineer · RF Validation · O-RAN</title>
+<meta name="description" content="Senior LTE/5G NR Test Engineer with 4+ years in RF Validation, RF Conformance (RCT), O-RAN RU features (M/C/U/S-plane), cross-domain system integration, and Python/Robot Framework automation across Tier-1 operators — Ooredoo, V Mobile, PNG Mobile, DTAG, VMO2, NEC." />
+<meta name="keywords" content="Senior LTE 5G NR Test Engineer, RF Validation, RF Conformance, RCT, ACLR, EVM, SEM, O-RAN RU, M-Plane C-Plane U-Plane S-Plane, RRC PDCP RLC MAC PHY, NETCONF, PTP, Carrier Aggregation, VoLTE, QXDM, Wireshark, XCAL, Amarisoft, TM500, Keysight EXM, Python, Robot Framework, PyTest, Parallel Wireless, Mavenir, Ooredoo, V Mobile, PNG Mobile" />
 <meta name="author" content="Pardha Saradhi Chandana" />
-<meta property="og:title" content="Pardha Saradhi Chandana — RAN / Automation Test Engineer" />
-<meta property="og:description" content="Validating LTE & 5G NR networks across feature, performance, and stability. 4+ years across Parallel Wireless and Mavenir Systems." />
+<meta property="og:title" content="Pardha Saradhi Chandana — Senior LTE/5G NR Test Engineer · RF Validation · O-RAN" />
+<meta property="og:description" content="RF Conformance (RCT), O-RAN RU validation, cross-domain system integration, and Python/Robot Framework automation across LTE & 5G NR networks for Tier-1 operators." />
 <meta property="og:type" content="profile" />
 <meta property="og:locale" content="en_US" />
 <meta name="theme-color" content="#0c0c0d" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c0c0d'/%3E%3Cg fill='none' stroke='%23e3b04b' stroke-width='2.2' stroke-linecap='round'%3E%3Cline x1='16' y1='26' x2='16' y2='13'/%3E%3Cpath d='M 7 13 Q 16 4 25 13'/%3E%3Cpath d='M 10.5 14.5 Q 16 9 21.5 14.5'/%3E%3C/g%3E%3Ccircle cx='16' cy='26' r='1.7' fill='%23e3b04b'/%3E%3C/svg%3E" />
 <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 <link rel="apple-touch-icon" href="assets/img/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -442,6 +443,122 @@
     color: var(--ink-faint);
     letter-spacing: 1.4px; text-transform: uppercase;
     margin-top: 12px;
+  }
+
+  /* ───── Stack Map — where I operate in the RAN ───── */
+  .stack-map {
+    display: flex; align-items: stretch; gap: 0;
+    overflow-x: auto; margin: 24px 0 40px;
+    padding-bottom: 12px; scrollbar-width: thin;
+  }
+  .stack-map::-webkit-scrollbar { height: 6px; }
+  .stack-map::-webkit-scrollbar-thumb { background: var(--hairline-strong); border-radius: 999px; }
+  .stack-cell {
+    flex: 1 0 210px; min-width: 190px;
+    border: 1px solid var(--hairline);
+    border-radius: 6px; padding: 22px 20px 18px;
+    background: rgba(19, 19, 22, 0.55);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    display: flex; flex-direction: column; gap: 8px;
+    transition: transform .35s var(--ease), border-color .35s var(--ease);
+  }
+  .stack-cell:hover { transform: translateY(-3px); }
+  .stack-cell[data-role="primary"] {
+    border-color: rgba(var(--accent-rgb), 0.55);
+    background: rgba(28, 22, 12, 0.65);
+    box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.14), inset 0 0 20px rgba(var(--accent-rgb), 0.04);
+  }
+  .stack-cell[data-role="secondary"] { opacity: 0.55; }
+  .stack-cell[data-role="secondary"]:hover { opacity: 0.85; }
+  .stack-cell .stack-icon-svg { width: 30px; height: 30px; color: var(--ink-dim); margin-bottom: 4px; }
+  .stack-cell[data-role="primary"] .stack-icon-svg { color: var(--accent); }
+  .stack-label {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 26px; letter-spacing: -0.02em; line-height: 1; color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .stack-label .primary-tag {
+    font-family: var(--mono); font-size: 8.5px; color: var(--accent);
+    letter-spacing: 1.3px; border: 1px solid rgba(var(--accent-rgb), 0.6);
+    padding: 2px 6px; border-radius: 2px; text-transform: uppercase;
+  }
+  .stack-sublabel {
+    font-family: var(--mono); font-size: 9.5px;
+    color: var(--ink-faint); letter-spacing: 1.3px;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .stack-chips {
+    display: flex; flex-wrap: wrap; gap: 4px;
+    margin-top: auto; padding-top: 14px;
+    border-top: 1px solid var(--hairline);
+  }
+  .stack-chips span {
+    font-family: var(--mono); font-size: 10px;
+    padding: 3px 8px; border-radius: 999px;
+    color: var(--ink-dim); border: 1px solid var(--hairline);
+    letter-spacing: 0.2px;
+  }
+  .stack-cell[data-role="primary"] .stack-chips { border-top-color: rgba(var(--accent-rgb), 0.3); }
+  .stack-cell[data-role="primary"] .stack-chips span {
+    border-color: rgba(var(--accent-rgb), 0.35);
+    color: #efc579; background: rgba(var(--accent-rgb), 0.05);
+  }
+  .stack-link {
+    flex: 0 0 auto; min-width: 92px; padding: 0 6px;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    gap: 6px; text-align: center;
+  }
+  .stack-link-label {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--ink-faint); letter-spacing: 1.2px;
+    text-transform: uppercase; line-height: 1.3;
+  }
+  .stack-link-arrow { color: var(--accent); font-size: 22px; line-height: 1; font-weight: 300; }
+  .stack-link-tech {
+    font-family: var(--mono); font-size: 9.5px;
+    color: var(--ink-dim); letter-spacing: 0.3px;
+    max-width: 110px; line-height: 1.35;
+  }
+  .stack-domains {
+    margin-top: 50px; padding-top: 36px;
+    border-top: 1px solid var(--hairline);
+  }
+  .stack-domains-head {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 1.6px;
+    text-transform: uppercase; margin-bottom: 22px;
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .stack-domains-head::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .stack-domains-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  }
+  @media (max-width: 900px) { .stack-domains-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .stack-domains-grid { grid-template-columns: 1fr; } }
+  .stack-domain {
+    padding: 22px 20px; border: 1px solid var(--hairline);
+    border-radius: 4px; background: rgba(19, 19, 22, 0.4);
+    transition: border-color .3s var(--ease), background .3s var(--ease);
+  }
+  .stack-domain:hover { border-color: var(--hairline-strong); background: rgba(19, 19, 22, 0.65); }
+  .stack-domain .d-num {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent); letter-spacing: 1.4px; margin-bottom: 10px;
+  }
+  .stack-domain .d-title {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 18px; letter-spacing: -0.01em;
+    margin-bottom: 8px; line-height: 1.2;
+  }
+  .stack-domain .d-desc {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-dim); line-height: 1.55; letter-spacing: 0.2px;
+  }
+  @media (max-width: 900px) {
+    .stack-map { flex-direction: column; overflow-x: visible; }
+    .stack-link { min-width: auto; padding: 10px 0; flex-direction: row; gap: 12px; }
+    .stack-link-arrow { transform: rotate(90deg); }
   }
 
   .work-list { border-top: 1px solid var(--hairline); background: rgba(12,12,13,0.4); }
@@ -973,11 +1090,11 @@
       </svg>
     </button>
     <div class="nav-links" id="navLinks">
-      <a href="#work">Work</a>
       <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#work">Work</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#focus">Focus</a>
-      <a href="#recognition">Recognition</a>
       <a href="#contact" class="cta">Get in touch <span class="arr">↗</span></a>
     </div>
   </div>
@@ -987,6 +1104,7 @@
 <aside class="side-nav" aria-label="Page sections">
   <a href="#top" data-target="top" data-cursor="hover"><span class="ln"></span><span class="lbl">Index</span></a>
   <a href="#about" data-target="about" data-cursor="hover"><span class="ln"></span><span class="lbl">About</span></a>
+  <a href="#stack" data-target="stack" data-cursor="hover"><span class="ln"></span><span class="lbl">Stack</span></a>
   <a href="#work" data-target="work" data-cursor="hover"><span class="ln"></span><span class="lbl">Work</span></a>
   <a href="#capabilities" data-target="capabilities" data-cursor="hover"><span class="ln"></span><span class="lbl">Capabilities</span></a>
   <a href="#focus" data-target="focus" data-cursor="hover"><span class="ln"></span><span class="lbl">Focus</span></a>
@@ -999,7 +1117,7 @@
   <header class="hero wrap">
     <div class="available reveal">
       <span class="dot"></span>
-      <span>AVAILABLE FOR RAN / 5G ROLES &middot; BANGALORE / REMOTE</span>
+      <span>AVAILABLE FOR SENIOR LTE / 5G NR / O-RAN ROLES &middot; HYDERABAD / BANGALORE / REMOTE</span>
     </div>
 
     <h1>
@@ -1013,7 +1131,7 @@
     <div class="hero-grid">
       <div class="hero-left">
         <p class="lede reveal d-1">
-          <strong>RAN / Radio System &amp; Automation Test Engineer</strong> validating LTE and 5G&nbsp;NR networks across feature, performance, and stability &mdash; currently at <strong>Parallel Wireless</strong>, formerly across Mavenir engagements for <strong>DTAG</strong>, <strong>VMO2</strong>, and <strong>NEC</strong>.
+          <strong>Senior LTE/5G NR Test Engineer</strong> &mdash; RF Validation, RCT, O-RAN RU features, and cross-domain system integration across feature, performance, and stability. Currently at <strong>Parallel Wireless</strong> for <strong>Ooredoo</strong>, <strong>V Mobile</strong>, and <strong>PNG Mobile</strong>; formerly across Mavenir programs for <strong>DTAG</strong>, <strong>VMO2</strong>, and <strong>NEC</strong>.
         </p>
         <div class="meta reveal d-2">
           <span><span class="k">01 &middot;</span> Bangalore, IN</span>
@@ -1102,28 +1220,32 @@
     <div class="marquee-track">
       <span>5G NR</span><span class="dot">&#9679;</span>
       <span>LTE Advanced</span><span class="dot">&#9679;</span>
-      <span>O-RAN</span><span class="dot">&#9679;</span>
       <span>O-RAN RU</span><span class="dot">&#9679;</span>
-      <span>M-Plane &middot; RCT &middot; eTilt</span><span class="dot">&#9679;</span>
+      <span>RF Conformance &middot; RCT</span><span class="dot">&#9679;</span>
+      <span>ACLR &middot; EVM &middot; SEM</span><span class="dot">&#9679;</span>
+      <span>M/C/U/S-plane</span><span class="dot">&#9679;</span>
+      <span>4 &amp; 5-Band AAU</span><span class="dot">&#9679;</span>
+      <span>NETCONF &middot; PTP</span><span class="dot">&#9679;</span>
       <span>Carrier Aggregation</span><span class="dot">&#9679;</span>
       <span>VoLTE</span><span class="dot">&#9679;</span>
       <span>RRC &middot; PDCP &middot; RLC &middot; MAC</span><span class="dot">&#9679;</span>
-      <span>QXDM &middot; Qualcomm Tools</span><span class="dot">&#9679;</span>
-      <span>Wireshark &middot; XCAL</span><span class="dot">&#9679;</span>
-      <span>Python Automation</span><span class="dot">&#9679;</span>
-      <span>Robot Framework</span><span class="dot">&#9679;</span>
+      <span>QXDM &middot; Wireshark &middot; XCAL</span><span class="dot">&#9679;</span>
+      <span>Amarisoft &middot; Keysight EXM</span><span class="dot">&#9679;</span>
+      <span>Python &middot; Robot Framework &middot; PyTest</span><span class="dot">&#9679;</span>
       <span>5G NR</span><span class="dot">&#9679;</span>
       <span>LTE Advanced</span><span class="dot">&#9679;</span>
-      <span>O-RAN</span><span class="dot">&#9679;</span>
       <span>O-RAN RU</span><span class="dot">&#9679;</span>
-      <span>M-Plane &middot; RCT &middot; eTilt</span><span class="dot">&#9679;</span>
+      <span>RF Conformance &middot; RCT</span><span class="dot">&#9679;</span>
+      <span>ACLR &middot; EVM &middot; SEM</span><span class="dot">&#9679;</span>
+      <span>M/C/U/S-plane</span><span class="dot">&#9679;</span>
+      <span>4 &amp; 5-Band AAU</span><span class="dot">&#9679;</span>
+      <span>NETCONF &middot; PTP</span><span class="dot">&#9679;</span>
       <span>Carrier Aggregation</span><span class="dot">&#9679;</span>
       <span>VoLTE</span><span class="dot">&#9679;</span>
       <span>RRC &middot; PDCP &middot; RLC &middot; MAC</span><span class="dot">&#9679;</span>
-      <span>QXDM &middot; Qualcomm Tools</span><span class="dot">&#9679;</span>
-      <span>Wireshark &middot; XCAL</span><span class="dot">&#9679;</span>
-      <span>Python Automation</span><span class="dot">&#9679;</span>
-      <span>Robot Framework</span><span class="dot">&#9679;</span>
+      <span>QXDM &middot; Wireshark &middot; XCAL</span><span class="dot">&#9679;</span>
+      <span>Amarisoft &middot; Keysight EXM</span><span class="dot">&#9679;</span>
+      <span>Python &middot; Robot Framework &middot; PyTest</span><span class="dot">&#9679;</span>
     </div>
   </div>
 
@@ -1139,7 +1261,7 @@
     <div class="about-grid">
       <div class="about-text reveal">
         <p>I spend my days in the messy, beautiful intersection of <strong>protocol stacks, real hardware, and customer expectations</strong>. RAN testing isn't about pass/fail - it's about understanding why a UE re-attaches at the cell edge at 3am, or why throughput dips during a specific handover sequence.</p>
-        <p>Currently at <strong>Parallel Wireless</strong> in the Radio R&amp;D group, I validate <strong>O-RAN Radio Unit (RU)</strong> features — <strong>M-Plane management</strong>, alarm handling, <strong>RCT workflows</strong>, RU recovery flows, and <strong>eTilt operations</strong> — across <strong>4 &amp; 5-Band AAU</strong> deployments for <strong>Ooredoo</strong>, <strong>V Mobile</strong>, and <strong>PNG Mobile</strong> networks. Backed by Robot Framework + Python automation for dual-band LTE/5G stability: multi-UE throughput, attach/detach endurance, and RSRP-controlled long-run tests.</p>
+        <p>Currently at <strong>Parallel Wireless</strong> in the Radio R&amp;D group, I validate <strong>O-RAN Radio Unit (RU)</strong> features and <strong>RF Conformance (RCT)</strong> — <strong>M/C/U/S-plane</strong>, alarm handling, RU recovery flows, eTilt, IQ playback, ACLR/EVM/SEM/Rx sensitivity — plus cross-domain debug spanning O-RU, BBU, LTE protocol stack, <strong>NETCONF</strong>, and <strong>PTP synchronization</strong>. Deployments for <strong>Ooredoo</strong>, <strong>V Mobile</strong>, and <strong>PNG Mobile</strong> networks, backed by Robot Framework + Python automation for multi-UE throughput, endurance, and RSRP-controlled long-run tests.</p>
         <p>Before that, four years at <strong>Mavenir Systems</strong> validating LTE and 5G SA / NSA for <strong>Deutsche Telekom (DTAG)</strong>, <strong>Virgin Media O2 (VMO2)</strong>, <strong>NEC</strong>, <strong>Ooredoo</strong>, <strong>V Mobile</strong>, and <strong>PNG networks</strong> — Carrier Aggregation up to 1.4&nbsp;Gbps DL, O-RAN CU/DU/RU integration, and root-cause analysis across the full protocol stack.</p>
         <div class="signature">- Stable. Scalable. Signal-true.</div>
       </div>
@@ -1158,8 +1280,150 @@
           <div class="lbl">Peak DL &middot; 4CA validated</div>
         </div>
         <div class="stat">
-          <div class="num">4 &amp; 5<span class="unit">Band</span></div>
-          <div class="lbl">AAU configurations &middot; RCT validated</div>
+          <div class="num"><span class="counter" data-to="100">0</span><span class="unit">+ RU</span></div>
+          <div class="lbl">Reboot endurance runs &middot; RCT validated</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">- The stack</div>
+        <h2>Where I <span class="it">operate.</span></h2>
+      </div>
+      <p class="lead">Coverage across the RAN — UE air interface through the O-RAN split (RU, DU, CU) to the packet core. Primary focus on the <strong>Radio Unit</strong>: RF conformance, RCT, M/C/U/S-plane, and cross-domain system integration.</p>
+    </div>
+
+    <div class="stack-map reveal d-1">
+
+      <div class="stack-cell" data-role="secondary">
+        <svg class="stack-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <rect x="7" y="2" width="10" height="20" rx="2"/>
+          <circle cx="12" cy="18" r="0.6" fill="currentColor"/>
+        </svg>
+        <div class="stack-label">UE</div>
+        <div class="stack-sublabel">User Equipment</div>
+        <div class="stack-chips">
+          <span>Commercial UEs</span><span>TM500</span><span>Amarisoft</span><span>Telit / COMPAL</span>
+        </div>
+      </div>
+
+      <div class="stack-link">
+        <div class="stack-link-label">Air<br/>Interface</div>
+        <div class="stack-link-arrow">&#8594;</div>
+        <div class="stack-link-tech">LTE &middot; 5G NR</div>
+      </div>
+
+      <div class="stack-cell" data-role="primary">
+        <svg class="stack-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <line x1="12" y1="22" x2="12" y2="8"/>
+          <path d="M4 8 Q12 -2 20 8"/>
+          <path d="M7 10 Q12 4 17 10" opacity="0.6"/>
+          <circle cx="12" cy="22" r="1.3" fill="currentColor"/>
+        </svg>
+        <div class="stack-label">RU <span class="primary-tag">PRIMARY</span></div>
+        <div class="stack-sublabel">Radio Unit &middot; O-RAN</div>
+        <div class="stack-chips">
+          <span>RF Conformance (RCT)</span><span>ACLR &middot; EVM &middot; SEM</span><span>M/C/U/S-plane</span>
+          <span>4 &amp; 5-Band AAU</span><span>IQ Playback</span><span>eTilt &middot; Alarms</span>
+          <span>PA Protection</span><span>Rx Sensitivity &middot; Blocking</span>
+        </div>
+      </div>
+
+      <div class="stack-link">
+        <div class="stack-link-label">Fronthaul</div>
+        <div class="stack-link-arrow">&#8594;</div>
+        <div class="stack-link-tech">eCPRI &middot; NETCONF &middot; PTP</div>
+      </div>
+
+      <div class="stack-cell" data-role="active">
+        <svg class="stack-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <rect x="3" y="6" width="18" height="12" rx="1"/>
+          <line x1="7" y1="10" x2="17" y2="10"/>
+          <line x1="7" y1="14" x2="13" y2="14"/>
+        </svg>
+        <div class="stack-label">DU</div>
+        <div class="stack-sublabel">Distributed Unit &middot; L1/L2</div>
+        <div class="stack-chips">
+          <span>PHY (L1)</span><span>MAC &middot; RLC</span><span>Scheduler</span>
+          <span>Intra/Inter-DU HO</span><span>BBU debug</span>
+        </div>
+      </div>
+
+      <div class="stack-link">
+        <div class="stack-link-label">Midhaul</div>
+        <div class="stack-link-arrow">&#8594;</div>
+        <div class="stack-link-tech">F1 &middot; F1AP</div>
+      </div>
+
+      <div class="stack-cell" data-role="active">
+        <svg class="stack-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M12 3 L12 21 M3 12 L21 12"/>
+          <circle cx="12" cy="12" r="4"/>
+        </svg>
+        <div class="stack-label">CU</div>
+        <div class="stack-sublabel">Central Unit &middot; L3</div>
+        <div class="stack-chips">
+          <span>RRC &middot; PDCP</span><span>CP / UP split</span>
+          <span>Handover Control</span><span>NAS awareness</span>
+        </div>
+      </div>
+
+      <div class="stack-link">
+        <div class="stack-link-label">Backhaul</div>
+        <div class="stack-link-arrow">&#8594;</div>
+        <div class="stack-link-tech">S1 &middot; X2 &middot; NG</div>
+      </div>
+
+      <div class="stack-cell" data-role="secondary">
+        <svg class="stack-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M3 12 h18"/>
+          <path d="M12 3 a15 15 0 0 1 0 18 M12 3 a15 15 0 0 0 0 18"/>
+        </svg>
+        <div class="stack-label">EPC / 5GC</div>
+        <div class="stack-sublabel">Core &middot; Adjacent</div>
+        <div class="stack-chips">
+          <span>Attach / Session</span><span>Awareness only</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="stack-domains reveal d-2">
+      <div class="stack-domains-head">Test coverage across the stack</div>
+      <div class="stack-domains-grid">
+        <div class="stack-domain">
+          <div class="d-num">01</div>
+          <div class="d-title">Feature Validation</div>
+          <div class="d-desc">Attach &middot; VoLTE &middot; Carrier Aggregation &middot; X2/S1 &middot; Intra/Inter-DU Handover</div>
+        </div>
+        <div class="stack-domain">
+          <div class="d-num">02</div>
+          <div class="d-title">RF Conformance (RCT)</div>
+          <div class="d-desc">ACLR &middot; EVM &middot; SEM &middot; Rx Sensitivity &middot; Blocking &middot; PA Protection &middot; IQ Playback</div>
+        </div>
+        <div class="stack-domain">
+          <div class="d-num">03</div>
+          <div class="d-title">Performance &amp; KPI</div>
+          <div class="d-desc">Throughput &middot; Latency &middot; Mobility &middot; 1.4 Gbps DL / 250 Mbps UL peak</div>
+        </div>
+        <div class="stack-domain">
+          <div class="d-num">04</div>
+          <div class="d-title">System Integration</div>
+          <div class="d-desc">Cross-domain debug &middot; O-RU &middot; BBU &middot; NETCONF &middot; PTP synchronization</div>
+        </div>
+        <div class="stack-domain">
+          <div class="d-num">05</div>
+          <div class="d-title">Stability &amp; Endurance</div>
+          <div class="d-desc">8-72h long runs &middot; 100+ RU reboot cycles &middot; Mixed traffic loads</div>
+        </div>
+        <div class="stack-domain">
+          <div class="d-num">06</div>
+          <div class="d-title">Automation</div>
+          <div class="d-desc">Robot Framework &middot; Python &middot; PyTest &middot; Appium/ADB &middot; CI / Nightly</div>
         </div>
       </div>
     </div>
@@ -1179,16 +1443,15 @@
       <article class="work-item reveal">
         <div class="idx">01 / 04</div>
         <div>
-          <h3>Parallel Wireless <span class="role">- Sr Engineer, QA, Radio R&amp;D</span></h3>
-          <div class="where">Bangalore, India <span class="client">Carrier-grade O-RAN RU &middot; Ooredoo &middot; V Mobile &middot; PNG Mobile</span></div>
+          <h3>Parallel Wireless <span class="role">- Senior Engineer, QA — Radio R&amp;D</span></h3>
+          <div class="where">Bangalore, India <span class="client">O-RAN RU Validation &middot; RCT &middot; Ooredoo &middot; V Mobile &middot; PNG Mobile</span></div>
           <ul>
-            <li>Validating <strong>O-RAN Radio Unit (RU)</strong> features for carrier-grade LTE and 5G deployments across global operator programs.</li>
-            <li>RU feature verification: <strong>M-Plane management</strong>, alarm handling, <strong>eTilt operations</strong>, <strong>RCT workflows</strong>, RU recovery flows, and interoperability validation.</li>
+            <li>Debugged <strong>cross-domain system failures</strong> across O-RAN Radio Unit (O-RU), Baseband Unit (BBU), LTE protocol stack (RRC/PDCP/RLC/MAC/PHY), RF subsystems, <strong>NETCONF management</strong>, and <strong>PTP synchronization</strong> — correlating radio, baseband, management, and automation logs across <strong>100+ RU reboot stability runs</strong> to isolate root causes.</li>
+            <li>Validated <strong>RF Conformance (RCT)</strong> of O-RAN Radio Units using <strong>IQ playback</strong> and Tx/Rx verification: <strong>ACLR, EVM, Output Power, SEM, Receiver Sensitivity, Blocking, Intermodulation, PA Protection</strong> — per 3GPP specifications.</li>
+            <li>Investigated and reported critical defects: RU reboot failures, carrier activation, RF configuration, bandwidth reconfiguration, NETCONF supervision, synchronization recovery, and RF hardware faults — collaborated with dev teams to validate fixes.</li>
+            <li>Automated dual-band LTE B4/B7 bring-up, <strong>multi-UE TCP/UDP throughput</strong>, attach/detach endurance, and <strong>RSRP-controlled RF baseline</strong> with Robot Framework and Python — reduced manual effort and improved regression efficiency across <strong>4 &amp; 5-Band AAU</strong>.</li>
+            <li>Resolved <strong>two high-impact O-RAN software defects</strong> involving bandwidth reconfiguration and post-reboot carrier initialization — significantly improved RU recovery reliability and CI validation efficiency.</li>
             <li>Supporting operator-facing integrations and deployment readiness for <strong>Ooredoo</strong>, <strong>V Mobile</strong>, and <strong>PNG Mobile</strong> networks.</li>
-            <li>Log analysis, fault debugging, and feature validation across <strong>multi-vendor O-RAN environments</strong>.</li>
-            <li>Built scalable <strong>Robot Framework + Python automation</strong> for dual-band LTE B4/B7 stability, multi-UE TCP/UDP throughput, and KPI validation.</li>
-            <li>Implemented <strong>RSRP monitoring with auto-attenuation</strong> for consistent RF baseline during long-duration endurance runs.</li>
-            <li>Refactored scripts into modular, failure-resilient components — cut troubleshooting time across stability cycles.</li>
           </ul>
         </div>
         <div class="when">Nov 2025<br/>- Present</div>
@@ -1321,18 +1584,22 @@
             <span class="chip">Carrier Aggregation 4CA DL / 2CA UL</span>
             <span class="chip">X2 / S1 Handover</span>
             <span class="chip">O-RAN CU / DU / RU</span>
-            <span class="chip">RU Features &middot; M-Plane</span>
-            <span class="chip">RCT &middot; eTilt</span>
+            <span class="chip">RU Features &middot; M/C/U/S-plane</span>
+            <span class="chip">RCT &middot; eTilt &middot; IQ Playback</span>
+            <span class="chip">NETCONF &middot; PTP Sync</span>
             <span class="chip">Multi-vendor Integration</span>
           </div>
         </div>
 
         <div class="cap reveal d-1">
           <div class="num">02</div>
-          <h4>Protocol Stack</h4>
+          <h4>RF Conformance (RCT)</h4>
           <div class="chips">
-            <span class="chip">RRC</span><span class="chip">PDCP</span><span class="chip">RLC</span><span class="chip">MAC</span>
-            <span class="chip">PHY (L1)</span><span class="chip">NAS</span><span class="chip">S1AP / X2AP</span><span class="chip">3GPP Compliance</span>
+            <span class="chip">ACLR</span><span class="chip">EVM</span><span class="chip">SEM</span>
+            <span class="chip">Rx Sensitivity</span><span class="chip">Blocking</span><span class="chip">Intermodulation</span>
+            <span class="chip">Output Power</span><span class="chip">PA Protection</span>
+            <span class="chip">IQ Playback</span><span class="chip">Dynamic Range</span>
+            <span class="chip">RSSI Accuracy</span><span class="chip">PS Shutdown</span>
           </div>
         </div>
 
@@ -1359,16 +1626,21 @@
           <div class="num">05</div>
           <h4>Automation &amp; Scripting</h4>
           <div class="chips">
-            <span class="chip">Python</span><span class="chip">Robot Framework</span><span class="chip">Multi-UE Orchestration</span>
-            <span class="chip">RSRP Monitoring</span><span class="chip">RF Baseline Validation</span><span class="chip">Auto-attenuation</span><span class="chip">CI-friendly Test Suites</span>
+            <span class="chip">Python</span><span class="chip">Robot Framework</span><span class="chip">PyTest</span>
+            <span class="chip">Appium / ADB</span><span class="chip">Multi-UE Orchestration</span>
+            <span class="chip">RSRP Monitoring</span><span class="chip">Auto-attenuation</span>
+            <span class="chip">CI / Nightly Validation</span><span class="chip">Shell Scripting</span>
           </div>
         </div>
 
         <div class="cap reveal d-1">
           <div class="num">06</div>
-          <h4>Simulators &amp; Real UEs</h4>
+          <h4>Test Equipment &amp; UEs</h4>
           <div class="chips">
-            <span class="chip">TM500</span><span class="chip">Dingli</span><span class="chip">OnePlus</span><span class="chip">Samsung</span><span class="chip">Telit</span><span class="chip">COMPAL</span>
+            <span class="chip">TM500</span><span class="chip">Amarisoft</span>
+            <span class="chip">Keysight EXM</span><span class="chip">Dingli</span>
+            <span class="chip">OnePlus</span><span class="chip">Samsung</span>
+            <span class="chip">Telit</span><span class="chip">COMPAL</span>
           </div>
         </div>
 
@@ -1535,7 +1807,7 @@
   <section id="contact" class="contact wrap">
     <div class="small-cap reveal">- Get in touch</div>
     <h2 class="reveal d-1">Let's build something <span class="it">signal-true.</span></h2>
-    <p class="blurb reveal d-2">Open to RAN / Radio System &amp; Automation Test Engineer roles, contract validation work, and ORAN consulting. Reach out - I read every message.</p>
+    <p class="blurb reveal d-2">Open to Senior LTE/5G NR, RF Validation, and O-RAN RU roles &middot; contract validation work &middot; ORAN consulting. Reach out &mdash; I read every message.</p>
 
     <div class="contact-grid">
 
@@ -1548,7 +1820,6 @@
         <div class="form-field">
           <label for="cf-email">Email address</label>
           <input id="cf-email" name="email" type="email" required maxlength="120"/>
-        </div>
         <div class="form-field">
           <label for="cf-msg">Your message</label>
           <textarea id="cf-msg" name="message" required maxlength="2000"></textarea>
@@ -1564,10 +1835,10 @@
           <img src="profile_picture.jpg" alt="Pardha Saradhi Chandana" onerror="this.parentElement.textContent='PSC'; this.parentElement.style.fontSize='16px';"/>
         </div>
         <h3>Pardha Saradhi Chandana</h3>
-        <p class="profile-role">RAN / Radio System &amp; Automation Test Engineer &middot; Bangalore, India</p>
+        <p class="profile-role">Senior LTE/5G NR Test Engineer &middot; RF Validation &middot; O-RAN RU &middot; Hyderabad / Bangalore</p>
 
         <div class="profile-tags">
-          <span>5G NR</span><span>LTE</span><span>ORAN</span><span>Python</span><span>Robot</span><span class="more">+15 more</span>
+          <span>5G NR</span><span>LTE</span><span>O-RAN</span><span>RCT</span><span>Python</span><span class="more">+15 more</span>
         </div>
 
         <a href="resume.pdf" download class="profile-resume" data-cursor="hover">
@@ -1599,7 +1870,7 @@
       <span class="arr">&#8599;</span>
     </a>
     <div class="contact-meta reveal d-3">
-      <span>Bangalore, India</span>
+      <span>Hyderabad / Bangalore, India</span>
       <a href="tel:+918247087692">+91 82470 87692</a>
     </div>
   </section>
@@ -1613,20 +1884,20 @@
         <h5>- Contact</h5>
         <a href="mailto:pardhasaradhi7477@gmail.com">pardhasaradhi7477@gmail.com</a>
         <a href="tel:+918247087692">+91 82470 87692</a>
-        <p>Bangalore, India</p>
+        <p>Hyderabad / Bangalore, India</p>
       </div>
       <div class="logo-big">PSC.</div>
       <div class="col right">
         <h5>- Navigate</h5>
+        <a href="#stack">Stack</a>
         <a href="#work">Experience</a>
         <a href="#capabilities">Capabilities</a>
-        <a href="#recognition">Recognition</a>
         <a href="resume.pdf" download>Resume &darr;</a>
       </div>
     </div>
     <div class="colophon">
       <span>&copy; 2026 PARDHA SARADHI CHANDANA</span>
-      <span>RAN / RADIO SYSTEM &amp; AUTOMATION TEST ENGINEER</span>
+      <span>SENIOR LTE / 5G NR TEST ENGINEER &middot; RF VALIDATION &middot; O-RAN</span>
       <span>DESIGNED &amp; CRAFTED WITH CARE</span>
     </div>
   </div>
@@ -1642,7 +1913,7 @@
   let W=0,H=0;
   const mouse={x:-9999,y:-9999,active:false};
   let particles=[];
-  const SKILLS=['5G NR','LTE','ORAN','VoLTE','QXDM','Wireshark','Python','RRC','CA','Robot'];
+  const SKILLS=['5G NR','LTE','O-RAN','RCT','QXDM','Wireshark','Python','RRC','AAU','Robot'];
   function resize(){
     W=window.innerWidth;H=window.innerHeight;
     canvas.width=W*dpr;canvas.height=H*dpr;
@@ -1657,40 +1928,30 @@
       particles.push({
         x:Math.random()*W,y:Math.random()*H,
         vx:(Math.random()-0.5)*0.18,vy:(Math.random()-0.5)*0.18,
-        r:isSkill?2.6:1.2,
-        label:isSkill?SKILLS[i]:null
+        r:isSkill?2.6:1.2,label:isSkill?SKILLS[i]:null
       });
     }
   }
   function tick(){
     ctx.clearRect(0,0,W,H);
-    const ps=particles;
-    const link2=18000;const mouseR2=22500;
+    const ps=particles;const link2=18000;const mouseR2=22500;
     for(const p of ps){
       if(mouse.active){
-        const dx=p.x-mouse.x,dy=p.y-mouse.y;
-        const d2=dx*dx+dy*dy;
+        const dx=p.x-mouse.x,dy=p.y-mouse.y;const d2=dx*dx+dy*dy;
         if(d2<mouseR2&&d2>0.001){
-          const d=Math.sqrt(d2);
-          const f=(1-d/150)*0.5;
+          const d=Math.sqrt(d2);const f=(1-d/150)*0.5;
           p.vx+=(dx/d)*f;p.vy+=(dy/d)*f;
         }
       }
-      p.x+=p.vx;p.y+=p.vy;
-      p.vx*=0.97;p.vy*=0.97;
-      p.vx+=(Math.random()-0.5)*0.025;
-      p.vy+=(Math.random()-0.5)*0.025;
-      if(p.x<-20) p.x=W+20;
-      if(p.x>W+20) p.x=-20;
-      if(p.y<-20) p.y=H+20;
-      if(p.y>H+20) p.y=-20;
+      p.x+=p.vx;p.y+=p.vy;p.vx*=0.97;p.vy*=0.97;
+      p.vx+=(Math.random()-0.5)*0.025;p.vy+=(Math.random()-0.5)*0.025;
+      if(p.x<-20) p.x=W+20;if(p.x>W+20) p.x=-20;
+      if(p.y<-20) p.y=H+20;if(p.y>H+20) p.y=-20;
     }
     ctx.lineWidth=0.5;
     for(let i=0;i<ps.length;i++){
       for(let j=i+1;j<ps.length;j++){
-        const a=ps[i],b=ps[j];
-        const dx=a.x-b.x,dy=a.y-b.y;
-        const d2=dx*dx+dy*dy;
+        const a=ps[i],b=ps[j];const dx=a.x-b.x,dy=a.y-b.y;const d2=dx*dx+dy*dy;
         if(d2<link2){
           const alpha=(1-d2/link2)*0.09;
           ctx.strokeStyle='rgba(239, 232, 219, '+alpha+')';
@@ -1778,8 +2039,7 @@
   if(!chips.length) return;
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const data=Array.from(chips).map((el)=>({
-    el,
-    radius:parseFloat(el.dataset.radius),
+    el,radius:parseFloat(el.dataset.radius),
     baseAngle:parseFloat(el.dataset.angle),
     speed:parseFloat(el.dataset.speed)
   }));
@@ -1791,8 +2051,7 @@
     const rad=angle*Math.PI/180;
     const x=50+item.radius*Math.cos(rad);
     const y=50+item.radius*Math.sin(rad);
-    item.el.style.left=x+'%';
-    item.el.style.top=y+'%';
+    item.el.style.left=x+'%';item.el.style.top=y+'%';
   }
   data.forEach((d)=>position(d,0));
   if(reduce) return;
@@ -1868,7 +2127,7 @@
 })();
 
 (function(){
-  const sections=['top','about','work','capabilities','focus','recognition','contact'];
+  const sections=['top','about','stack','work','capabilities','focus','recognition','contact'];
   const links=document.querySelectorAll('.side-nav a');
   const nav=document.getElementById('nav');
   let lastY=0;
